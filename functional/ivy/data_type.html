@@ -327,7 +327,8 @@ the same shape as <code class="docutils literal notranslate"><span class="pre">x
 </pre></div>
 </div>
 <p>Using <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.Container</span></code> instance method:</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="kc">False</span><span class="p">,</span><span class="kc">True</span><span class="p">,</span><span class="kc">True</span><span class="p">]),</span>        <span class="n">b</span><span class="o">=</span><span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">3.14</span><span class="p">,</span> <span class="mf">2.718</span><span class="p">,</span> <span class="mf">1.618</span><span class="p">]))</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="kc">False</span><span class="p">,</span><span class="kc">True</span><span class="p">,</span><span class="kc">True</span><span class="p">]),</span> <span class="o">/</span>
+<span class="go">    b=ivy.array([3.14, 2.718, 1.618]))</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">ivy</span><span class="o">.</span><span class="n">int32</span><span class="p">))</span>
 <span class="go">{</span>
 <span class="go">    a: ivy.array([0, 1, 1]),</span>
@@ -1697,7 +1698,7 @@ current framework.</p>
 
 <div class="toctree-wrapper compound">
 </div>
-<p>This should have hopefully given you an overview of the Data Type submodule,If you’re ever unsure of how best to proceed, please feel free to engage with the <a class="reference external" href="https://github.com/unifyai/ivy/discussions/2187">Data Type discussion</a>,or reach out on <a class="reference external" href="https://discord.gg/ZVQdvbzNQJ">discord</a> in the <a class="reference external" href="https://discord.com/channels/799879767196958751/1000043749088436315">Data Type channel</a>!</p>
+<p>This should have hopefully given you an overview of the data type submodule,If you have any questions, please feel free to reach out on our <a class="reference external" href="https://discord.gg/ZVQdvbzNQJ">discord</a> in the <a class="reference external" href="https://discord.com/channels/799879767196958751/1000043749088436315">data type channel</a> or in the <a class="reference external" href="https://discord.com/channels/799879767196958751/2187">data type forum</a>!</p>
 </section>
 
 
