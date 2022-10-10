@@ -80,6 +80,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../arrays_equal.html">arrays_equal</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../all_equal.html">all_equal</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../to_numpy.html">to_numpy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../isscalar.html">isscalar</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../to_scalar.html">to_scalar</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../to_list.html">to_list</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../clip_vector_norm.html">clip_vector_norm</a></li>
@@ -244,7 +245,7 @@ Default is False.</p></li>
 </dl>
 <p class="rubric">Examples</p>
 <p>Increment by a value
-&gt;&gt;&gt; x = ivy.Container(a=ivy.array([0.5, -5., 30.]),                           b=ivy.array([0., -25., 50.]))
+&gt;&gt;&gt; x = ivy.Container(a=ivy.array([0.5, -5., 30.]),b=ivy.array([0., -25., 50.]))
 &gt;&gt;&gt; y = ivy.inplace_increment(x, 1.5)
 &gt;&gt;&gt; print(y)
 {</p>
