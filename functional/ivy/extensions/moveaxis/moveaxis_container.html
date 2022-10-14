@@ -79,6 +79,8 @@
 <li class="toctree-l3"><a class="reference internal" href="static_moveaxis_container.html">ivy.Container.static_moveaxis</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../pad.html">pad</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../heaviside.html">heaviside</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../general.html">General</a></li>
@@ -178,16 +180,14 @@ These must also be unique.</p></li>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
-<p>With one <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.Container</span></code> input:</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="n">ivy</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">)),</span> <span class="n">b</span><span class="o">=</span><span class="n">ivy</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">6</span><span class="p">)))</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span><span class="o">.</span><span class="n">moveaxis</span><span class="p">(,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">shape</span>
-</pre></div>
-</div>
-<dl class="simple">
-<dt>{</dt><dd><p>a: (4, 5, 3)
+<p>With one <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.Container</span></code> input:
+&gt;&gt;&gt; x = ivy.Container(a=ivy.zeros((3, 4, 5)), b=ivy.zeros((2,7,6)))
+&gt;&gt;&gt; x.moveaxis(, 0, -1).shape
+{</p>
+<blockquote>
+<div><p>a: (4, 5, 3)
 b: (7, 6, 2)</p>
-</dd>
-</dl>
+</div></blockquote>
 <p>}</p>
 </dd></dl>
 
