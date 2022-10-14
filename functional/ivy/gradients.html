@@ -320,7 +320,7 @@ updates.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="ivy.functional.ivy.gradients.execute_with_gradients">
-<span class="sig-prename descclassname">ivy.</span></span><span class="sig-name descname"><span class="pre">execute_with_gradients</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xs</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">/</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">retain_grads</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ivy/functional/ivy/gradients.html#execute_with_gradients"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ivy.functional.ivy.gradients.execute_with_gradients" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname">ivy.</span></span><span class="sig-name descname"><span class="pre">execute_with_gradients</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xs</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">/</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">retain_grads</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">grad_idxs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ivy/functional/ivy/gradients.html#execute_with_gradients"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ivy.functional.ivy.gradients.execute_with_gradients" title="Permalink to this definition"></a></dt>
 <dd><p>Call function func with input of xs variables, and return func first output y,
 the gradients [dy/dx for x in xs], and any other function outputs after the returned
 y value.</p>
@@ -331,6 +331,8 @@ y value.</p>
 input.</p></li>
 <li><p><strong>xs</strong> – Variables for which to compute the function gradients with respective to.</p></li>
 <li><p><strong>retain_grads</strong> – Whether to retain the gradients of the returned values. (Default value = False)</p></li>
+<li><p><strong>grad_idxs</strong> – Indices of the returned arrays for which to return computed gradients If None,
+all gradients are returned. (Default value = None)</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -1068,7 +1070,7 @@ If with_grads is neither None nor boolean, it will raise an IvyException</p>
 
 <div class="toctree-wrapper compound">
 </div>
-<p>This should have hopefully given you an overview of the Gradients submodule,If you’re ever unsure of how best to proceed, please feel free to engage with the <a class="reference external" href="https://github.com/unifyai/ivy/discussions/1028299026501750826">Gradients discussion</a>,or reach out on <a class="reference external" href="https://discord.gg/ZVQdvbzNQJ">discord</a> in the <a class="reference external" href="https://discord.com/channels/799879767196958751/1000043921633722509">Gradients channel</a>!</p>
+<p>This should have hopefully given you an overview of the gradients submodule,If you have any questions, please feel free to reach out on our <a class="reference external" href="https://discord.gg/ZVQdvbzNQJ">discord</a> in the <a class="reference external" href="https://discord.com/channels/799879767196958751/1000043921633722509">gradients channel</a> or in the <a class="reference external" href="https://discord.com/channels/799879767196958751/1028299026501750826">gradients forum</a>!</p>
 </section>
 
 
