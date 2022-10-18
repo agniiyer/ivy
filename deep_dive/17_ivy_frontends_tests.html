@@ -341,7 +341,7 @@ implement them for testing.</p>
         <span class="n">available_dtypes</span><span class="o">=</span><span class="n">helpers</span><span class="o">.</span><span class="n">get_dtypes</span><span class="p">(</span><span class="s2">&quot;float&quot;</span><span class="p">),</span>
     <span class="p">),</span>
     <span class="n">num_positional_args</span><span class="o">=</span><span class="n">helpers</span><span class="o">.</span><span class="n">num_positional_args</span><span class="p">(</span>
-        <span class="n">fn_name</span><span class="o">=</span><span class="s2">&quot;ivy.functional.frontends.torch.leaky_relu&quot;</span>
+        <span class="n">fn_name</span><span class="o">=</span><span class="s2">&quot;ivy.functional.frontends.torch.nn.functional.leaky_relu&quot;</span>
     <span class="p">),</span>
     <span class="n">alpha</span><span class="o">=</span><span class="n">st</span><span class="o">.</span><span class="n">floats</span><span class="p">(</span><span class="n">min_value</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">max_value</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span>
     <span class="n">with_inplace</span><span class="o">=</span><span class="n">st</span><span class="o">.</span><span class="n">booleans</span><span class="p">(),</span>
@@ -840,8 +840,8 @@ are being tested.</p>
     <span class="n">ret_gt</span> <span class="o">=</span> <span class="n">helpers</span><span class="o">.</span><span class="n">flatten_and_to_np</span><span class="p">(</span><span class="n">ret</span><span class="o">=</span><span class="n">ret_gt</span><span class="p">)</span>
     <span class="k">for</span> <span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">ret</span><span class="p">,</span> <span class="n">ret_gt</span><span class="p">):</span>
         <span class="n">helpers</span><span class="o">.</span><span class="n">value_test</span><span class="p">(</span>
-            <span class="n">ret</span><span class="o">=</span><span class="n">ret</span><span class="p">,</span>
-            <span class="n">ret_from_gt</span><span class="o">=</span><span class="n">ret_gt</span><span class="p">,</span>
+            <span class="n">ret</span><span class="o">=</span><span class="n">u</span><span class="p">,</span>
+            <span class="n">ret_from_gt</span><span class="o">=</span><span class="n">v</span><span class="p">,</span>
             <span class="n">ground_truth_backend</span><span class="o">=</span><span class="s2">&quot;jax&quot;</span><span class="p">,</span>
         <span class="p">)</span>
 </pre></div>
@@ -885,7 +885,7 @@ the Ivy API tests and the frontend tests,
 and we should strive for as much sharing as possible to minimize the amount of code.</p>
 <p><strong>Round Up</strong></p>
 <p>These examples have hopefully given you a good understanding of Ivy Frontend Tests!</p>
-<p>If you have any questions, please feel free to reach out on <a class="reference external" href="https://discord.gg/ZVQdvbzNQJ">discord</a> in the <a class="reference external" href="https://discord.com/channels/799879767196958751/1028267758028337193">ivy frontends tests channel</a>
+<p>If you have any questions, please feel free to reach out on <a class="reference external" href="https://discord.gg/sXyFF8tDtm">discord</a> in the <a class="reference external" href="https://discord.com/channels/799879767196958751/1028267758028337193">ivy frontends tests channel</a>
 or in the <a class="reference external" href="https://discord.com/channels/799879767196958751/1028297887605587998">ivy frontends tests forum</a>!</p>
 </section>
 </section>

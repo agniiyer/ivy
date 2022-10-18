@@ -186,7 +186,7 @@ you should make sure to check whether you are eligible for a
 <a class="reference external" href="https://www.jetbrains.com/community/education/#students">free student licence</a>.
 Many people seem to miss this option,
 so we thought we would add an explicit reminder here in the setting up guide!</p>
-<p>For questions, please reach out on <a class="reference external" href="https://discord.gg/ZVQdvbzNQJ">discord</a> in the <a class="reference external" href="https://discord.com/channels/799879767196958751/942114831039856730">pycharm channel</a>!</p>
+<p>For questions, please reach out on <a class="reference external" href="https://discord.gg/sXyFF8tDtm">discord</a> in the <a class="reference external" href="https://discord.com/channels/799879767196958751/942114831039856730">pycharm channel</a>!</p>
 </section>
 <section id="virtual-environments-no-docker">
 <h2>Virtual environments - No Docker<a class="headerlink" href="#virtual-environments-no-docker" title="Permalink to this heading"></a></h2>
@@ -309,13 +309,14 @@ which, as mentioned above, is the IDE of choice for our development team:</p>
 <li><p>Opening cmd, and running the command: <code class="code docutils literal notranslate"><span class="pre">docker</span> <span class="pre">pull</span> <span class="pre">unifyai/ivy:latest</span></code></p></li>
 </ol>
 </li>
-<li><p>Install <a class="reference external" href="https://www.jetbrains.com/pycharm/">Pycharm Professional Version</a></p></li>
+<li><p>Install <a class="reference external" href="https://www.jetbrains.com/pycharm/">Pycharm Professional Version</a>, make sure to only install the Professional version of PyCharm, not the Community version.</p></li>
 <li><p>Open pycharm with your cloned Ivy repository. Add the remote python interpreter by:</p>
 <ol class="loweralpha simple">
 <li><p>Going to the settings -&gt; Build, Execution, Deployment -&gt; Docker. Click the “+” on top left and it should add a docker connection.</p></li>
 <li><p>Going to settings -&gt; project -&gt; Python Interpreter</p></li>
 <li><p>Clicking add interpreter (currently by clicking the ⚙ icon by the right side) which should open a new window.</p></li>
 <li><p>Choosing “Docker” from the left panel. Type python3 (with the number) in python interpreter path and press ok.</p></li>
+<li><p>Opening “Edit Run/Debug configurations” dialog -&gt; “Edit Configurations…” and making sure that “Working directory” is empty in case of getting the “Can’t run process: the working directory ‘ivy’ is invalid, it needs to be an absolute path” error.</p></li>
 </ol>
 </li>
 </ol>
@@ -408,7 +409,7 @@ $(lsb_release -cs) stable&quot; | sudo tee /etc/apt/sources.list.d/docker.list &
 </ol>
 </li>
 </ol>
-<p>For questions, please reach out on <a class="reference external" href="https://discord.gg/ZVQdvbzNQJ">discord</a> in the <a class="reference external" href="https://discord.com/channels/799879767196958751/942114744691740772">docker channel</a>!</p>
+<p>For questions, please reach out on <a class="reference external" href="https://discord.gg/sXyFF8tDtm">discord</a> in the <a class="reference external" href="https://discord.com/channels/799879767196958751/942114744691740772">docker channel</a>!</p>
 <p><strong>Video</strong></p>
 <iframe width="420" height="315"
 src="https://www.youtube.com/embed/UHeSnZu0pAI" class="video">
@@ -475,12 +476,14 @@ This is because PyCharm by default turns off headers and summary’s while runni
 <p>Now, if Hypothesis detects an error in the code it will return more detailed information on each of the failing examples:</p>
 <a class="reference internal image-reference" href="https://raw.githubusercontent.com/unifyai/unifyai.github.io/master/img/externally_linked/contributing/0_setting_up/more_detailed_hypothesis_logs/detailed_hypothesis_example.png?raw=true"><img alt="https://raw.githubusercontent.com/unifyai/unifyai.github.io/master/img/externally_linked/contributing/0_setting_up/more_detailed_hypothesis_logs/detailed_hypothesis_example.png?raw=true" src="https://raw.githubusercontent.com/unifyai/unifyai.github.io/master/img/externally_linked/contributing/0_setting_up/more_detailed_hypothesis_logs/detailed_hypothesis_example.png?raw=true" style="width: 420px;" /></a>
 <p>For questions, please reach out on the <a href="#id6"><span class="problematic" id="id7">`setting up discussion`_</span></a>
-or on <a class="reference external" href="https://discord.gg/ZVQdvbzNQJ">discord</a> in the <a class="reference external" href="https://discord.com/channels/799879767196958751/942114744691740772">docker channel</a>!</p>
+or on <a class="reference external" href="https://discord.gg/sXyFF8tDtm">discord</a> in the <a class="reference external" href="https://discord.com/channels/799879767196958751/942114744691740772">docker channel</a>!</p>
 </section>
 </section>
 <section id="github-codespaces">
 <h2>GitHub Codespaces<a class="headerlink" href="#github-codespaces" title="Permalink to this heading"></a></h2>
 <p>It can be headache to install Docker and setup the PyCharm development environment, especially on recent ARM architectures like the new M1 Macs. Instead, we could make use of the GitHub Codespaces feature provided; this feature creates a VM (Virtual Machine) on the Azure cloud (means no local computation) with same configuration as defined by <code class="code docutils literal notranslate"><span class="pre">ivy/Dockerfile</span></code>. Since it’s a VM, we no longer have to worry about installing the right packages, modules etc., making it platform agnostic (just like ivy :P). We can develop as we usually do on Visual Studio Code with all your favourite extensions and themes available in Codespaces too. With all the computations being done on cloud, we could contribute to Ivy using unsupported hardware, old/slow systems, even from your iPad as long as you have visual studio code or a browser installed. How cool is that ?!</p>
+<p><strong>Important Note</strong></p>
+<p>There are several versions of GitHub. If you are using the free one you will not have access to GitHub Codespaces, to use Codespaces you have to have access to one of the paid versions which GitHub offers.</p>
 <p><strong>Pre-requisites</strong></p>
 <ol class="arabic simple">
 <li><p>Before we setup GitHub Codespaces, we need to have Visual Studio Code installed (you can get it from <a class="reference external" href="https://code.visualstudio.com/">here</a>).</p></li>
@@ -572,10 +575,10 @@ and the commit will then succeed on the next attempt.</p>
 </ol>
 <p>That’s it! Now when you make a commit, the pre-commit hooks will all be run correctly,
 as explained above.</p>
-<p>For questions, please reach out on <a class="reference external" href="https://discord.gg/ZVQdvbzNQJ">discord</a> in the <a class="reference external" href="https://discord.com/channels/799879767196958751/982725464110034944">pre-commit channel</a>!</p>
+<p>For questions, please reach out on <a class="reference external" href="https://discord.gg/sXyFF8tDtm">discord</a> in the <a class="reference external" href="https://discord.com/channels/799879767196958751/982725464110034944">pre-commit channel</a>!</p>
 <p><strong>Round Up</strong></p>
 <p>This should have hopefully given you a good understanding of how to get things properly set up.</p>
-<p>If you have any questions, please feel free to reach out on <a class="reference external" href="https://discord.gg/ZVQdvbzNQJ">discord</a>
+<p>If you have any questions, please feel free to reach out on <a class="reference external" href="https://discord.gg/sXyFF8tDtm">discord</a>
 in the <a class="reference external" href="https://discord.com/channels/799879767196958751/942114831039856730">pycharm channel</a>, <a class="reference external" href="https://discord.com/channels/799879767196958751/942114744691740772">docker channel</a>,
 <a class="reference external" href="https://discord.com/channels/799879767196958751/982725464110034944">pre-commit channel</a>, <a class="reference external" href="https://discord.com/channels/799879767196958751/942114789642080317">pip packages channel</a> depending on the question!</p>
 </section>
