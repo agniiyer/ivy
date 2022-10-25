@@ -17,11 +17,14 @@ Array methods
    array_methods/lcm.rst
    array_methods/fmod.rst
    array_methods/fmax.rst
+   array_methods/trapz.rst
    array_methods/flatten.rst
    array_methods/max_pool2d.rst
    array_methods/pad.rst
    array_methods/moveaxis.rst
    array_methods/heaviside.rst
    array_methods/flipud.rst
+   array_methods/vstack.rst
+   array_methods/hstack.rst
    array_methods/median.rst
 

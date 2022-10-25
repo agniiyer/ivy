@@ -41,8 +41,8 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../../background.html">Background</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../design.html">Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../related_work.html">Related Work</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../extensions.html">Extensions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../roadmap.html">Roadmap</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../contributing.html">Contributing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../deep_dive.html">Deep Dive</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../faq.html">FAQ</a></li>
@@ -2313,7 +2313,7 @@
         <span class="n">ivy</span><span class="o">.</span><span class="n">default_dtype</span><span class="p">(</span><span class="n">item</span><span class="o">=</span><span class="n">default</span><span class="p">(</span><span class="n">min_base</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">_MIN_BASE</span><span class="p">)),</span>
     <span class="p">)</span>
     <span class="n">return_dtype</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">promote_types</span><span class="p">(</span><span class="n">return_dtype</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">default_dtype</span><span class="p">(</span><span class="n">item</span><span class="o">=</span><span class="n">exponent</span><span class="p">))</span>
-    <span class="n">ret</span> <span class="o">=</span> <span class="p">(</span><span class="n">base</span> <span class="o">+</span> <span class="n">default</span><span class="p">(</span><span class="n">min_base</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">_MIN_BASE</span><span class="p">))</span> <span class="o">**</span> <span class="n">exponent</span>
+    <span class="n">ret</span> <span class="o">=</span> <span class="p">(</span><span class="n">base</span> <span class="o">+</span> <span class="n">default</span><span class="p">(</span><span class="n">min_base</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">_MIN_BASE</span><span class="p">))</span> <span class="o">**</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">exponent</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">ret</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">return_dtype</span><span class="p">)</span></div>
 
 
@@ -3330,14 +3330,8 @@
 
 
 <span class="k">def</span> <span class="nf">_all_dnd_combinations</span><span class="p">():</span>
-    <span class="c1"># TODO: not hard code this</span>
-
-    <span class="n">VALID_DEVICES</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;cpu&quot;</span><span class="p">,)</span>
-    <span class="n">INVALID_DEVICES</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;gpu&quot;</span><span class="p">,</span> <span class="s2">&quot;tpu&quot;</span><span class="p">)</span>
-    <span class="n">ALL_DEVICES</span> <span class="o">=</span> <span class="n">VALID_DEVICES</span> <span class="o">+</span> <span class="n">INVALID_DEVICES</span>
-
     <span class="n">all_comb</span> <span class="o">=</span> <span class="p">{}</span>
-    <span class="k">for</span> <span class="n">device</span> <span class="ow">in</span> <span class="n">ALL_DEVICES</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">device</span> <span class="ow">in</span> <span class="n">ivy</span><span class="o">.</span><span class="n">all_devices</span><span class="p">:</span>
         <span class="n">all_comb</span><span class="p">[</span><span class="n">device</span><span class="p">]</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">all_dtypes</span>
     <span class="k">return</span> <span class="n">all_comb</span>
 

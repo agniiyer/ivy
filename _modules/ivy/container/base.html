@@ -41,8 +41,8 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../background.html">Background</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../design.html">Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../related_work.html">Related Work</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../extensions.html">Extensions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../roadmap.html">Roadmap</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../contributing.html">Contributing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../deep_dive.html">Deep Dive</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../faq.html">FAQ</a></li>
@@ -1879,7 +1879,7 @@
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">dim_size</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">dim_size</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="n">axis</span><span class="p">]</span>
+            <span class="n">dim_size</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">shared_shape</span><span class="p">[</span><span class="n">axis</span><span class="p">]</span>
         <span class="k">if</span> <span class="n">keepdims</span><span class="p">:</span>
             <span class="c1"># noinspection PyTypeChecker</span>
             <span class="k">return</span> <span class="p">[</span>
@@ -3738,6 +3738,12 @@
             <span class="n">uniform_indent_wo_overflow</span> <span class="o">=</span> <span class="n">array_str_in</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span>
                 <span class="s2">&quot;</span><span class="se">\\</span><span class="s2">n[&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">local_indent_str</span> <span class="o">+</span> <span class="n">extra_indent</span> <span class="o">+</span> <span class="s2">&quot;[&quot;</span>
             <span class="p">)</span>
+            <span class="n">uniform_indent_wo_overflow_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span>
+                <span class="nb">filter</span><span class="p">(</span>
+                    <span class="kc">None</span><span class="p">,</span>
+                    <span class="n">uniform_indent_wo_overflow</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\\</span><span class="s2">n&quot;</span><span class="p">)</span>
+                <span class="p">)</span>
+            <span class="p">)</span>
             <span class="n">uniform_indent</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
                 <span class="p">[</span>
                     <span class="n">local_indent_str</span> <span class="o">+</span> <span class="n">extra_indent</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="n">s</span>
@@ -3752,7 +3758,7 @@
                         <span class="k">if</span> <span class="p">(</span><span class="ow">not</span> <span class="n">s</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">isspace</span><span class="p">()</span> <span class="ow">and</span> <span class="n">s</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;&quot;&#39;</span><span class="p">)</span>
                         <span class="k">else</span> <span class="n">s</span>
                     <span class="p">)</span>
-                    <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">uniform_indent_wo_overflow</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\\</span><span class="s2">n&quot;</span><span class="p">)</span>
+                    <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">uniform_indent_wo_overflow_list</span>
                 <span class="p">]</span>
             <span class="p">)</span>
             <span class="n">indented</span> <span class="o">=</span> <span class="n">uniform_indent</span>
@@ -3927,9 +3933,6 @@
     <span class="k">def</span> <span class="fm">__dir__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="nb">super</span><span class="o">.</span><span class="fm">__dir__</span><span class="p">(</span><span class="bp">self</span><span class="p">))</span> <span class="o">+</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
 
-    <span class="k">def</span> <span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="fm">__getattr__</span><span class="p">(</span><span class="s2">&quot;__len__&quot;</span><span class="p">)</span>
-
     <span class="c1"># noinspection PyProtectedMember</span>
     <span class="k">def</span> <span class="fm">__getattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="k">try</span><span class="p">:</span>
@@ -3943,7 +3946,7 @@
                 <span class="k">else</span><span class="p">:</span>
                     <span class="c1"># raise error</span>
                     <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
-                        <span class="k">raise</span> <span class="n">IvyException</span><span class="p">(</span>
+                        <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span>
                             <span class="s2">&quot;&#39;</span><span class="si">{}</span><span class="s2">&#39; object has no attribute &#39;</span><span class="si">{}</span><span class="s2">&#39;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
                                 <span class="nb">type</span><span class="p">(</span><span class="n">v</span><span class="p">)</span><span class="o">.</span><span class="vm">__module__</span><span class="p">,</span> <span class="n">item</span>
                             <span class="p">)</span>
