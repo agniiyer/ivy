@@ -295,7 +295,7 @@ instances, and so we omit this argument. Again, it has no bearing on input-outpu
 behaviour and so this is not a problem when transpiling between frameworks.</p>
 <p>See the section “Unused Arguments” below for more details.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># in ivy/functional/frontends/numpy/mathematical_functions/trigonometric_functions.py</span>
-<span class="nd">from_zero_dim_arrays_to_float</span>
+<span class="nd">@from_zero_dim_arrays_to_float</span>
 <span class="k">def</span> <span class="nf">tan</span><span class="p">(</span>
     <span class="n">x</span><span class="p">,</span>
     <span class="o">/</span><span class="p">,</span>
@@ -680,8 +680,8 @@ the handling logic and reduce code redundancy. It is located in the
 <p>This decorator is then added to the numpy frontend functions with the
 <code class="code docutils literal notranslate"><span class="pre">casting</span></code> argument. An example of the <code class="xref py py-func docutils literal notranslate"><span class="pre">add()</span></code> function is shown below.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># ivy/functional/frontends/numpy/mathematical_functions/arithmetic_operations.py</span>
-<span class="nd">handle_numpy_casting</span>
-<span class="nd">to_ivy_arrays_and_back</span>
+<span class="nd">@handle_numpy_casting</span>
+<span class="nd">@to_ivy_arrays_and_back</span>
 <span class="k">def</span> <span class="nf">add</span><span class="p">(</span>
     <span class="n">x1</span><span class="p">,</span>
     <span class="n">x2</span><span class="p">,</span>
@@ -705,7 +705,7 @@ dtype must be <code class="code docutils literal notranslate"><span class="pre">
 to handle this.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># ivy/functional/frontends/numpy/func_wrapper.py</span>
 <span class="k">def</span> <span class="nf">handle_numpy_casting_special</span><span class="p">(</span><span class="n">fn</span><span class="p">:</span> <span class="n">Callable</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Callable</span><span class="p">:</span>
-    <span class="nd">functools</span><span class="o">.</span><span class="n">wraps</span><span class="p">(</span><span class="n">fn</span><span class="p">)</span>
+    <span class="nd">@functools</span><span class="o">.</span><span class="n">wraps</span><span class="p">(</span><span class="n">fn</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">new_fn</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">casting</span><span class="o">=</span><span class="s2">&quot;same_kind&quot;</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="n">ivy</span><span class="o">.</span><span class="n">assertions</span><span class="o">.</span><span class="n">check_elem_in_list</span><span class="p">(</span>
             <span class="n">casting</span><span class="p">,</span>
@@ -725,8 +725,8 @@ to handle this.</p>
 </div>
 <p>An example function using this is the <code class="xref py py-func docutils literal notranslate"><span class="pre">numpy.isfinite()</span></code> function.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># ivy/functional/frontends/numpy/logic/array_type_testing.py</span>
-<span class="nd">handle_numpy_casting_special</span>
-<span class="nd">to_ivy_arrays_and_back</span>
+<span class="nd">@handle_numpy_casting_special</span>
+<span class="nd">@to_ivy_arrays_and_back</span>
 <span class="k">def</span> <span class="nf">isfinite</span><span class="p">(</span>
     <span class="n">x</span><span class="p">,</span>
     <span class="o">/</span><span class="p">,</span>
