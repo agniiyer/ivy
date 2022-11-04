@@ -25,6 +25,16 @@ Container methods
    container_methods/fmax.rst
    container_methods/static_float_power.rst
    container_methods/float_power.rst
+   container_methods/static_exp2.rst
+   container_methods/exp2.rst
+   container_methods/static_nansum.rst
+   container_methods/nansum.rst
+   container_methods/static_gcd.rst
+   container_methods/gcd.rst
+   container_methods/static_isposinf.rst
+   container_methods/isposinf.rst
+   container_methods/static_isneginf.rst
+   container_methods/isneginf.rst
    container_methods/static_flatten.rst
    container_methods/flatten.rst
    container_methods/static_hann_window.rst
@@ -41,8 +51,12 @@ Container methods
    container_methods/kaiser_bessel_derived_window.rst
    container_methods/static_hamming_window.rst
    container_methods/hamming_window.rst
+   container_methods/static_max_pool3d.rst
+   container_methods/max_pool3d.rst
    container_methods/static_diagflat.rst
    container_methods/diagflat.rst
+   container_methods/static_kron.rst
+   container_methods/kron.rst
    container_methods/static_moveaxis.rst
    container_methods/moveaxis.rst
    container_methods/static_heaviside.rst
@@ -53,6 +67,14 @@ Container methods
    container_methods/static_vstack.rst
    container_methods/hstack.rst
    container_methods/static_hstack.rst
+   container_methods/static_rot90.rst
+   container_methods/rot90.rst
+   container_methods/static_top_k.rst
+   container_methods/top_k.rst
+   container_methods/static_fliplr.rst
+   container_methods/fliplr.rst
+   container_methods/static_i0.rst
+   container_methods/i0.rst
    container_methods/static_dirichlet.rst
    container_methods/dirichlet.rst
    container_methods/static_msort.rst
