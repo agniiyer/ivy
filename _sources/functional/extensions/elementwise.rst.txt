@@ -19,11 +19,4 @@ Elementwise
    elementwise/fmax.rst
    elementwise/trapz.rst
    elementwise/float_power.rst
-   elementwise/exp2.rst
-   elementwise/nansum.rst
-   elementwise/gcd.rst
-   elementwise/isposinf.rst
-   elementwise/isneginf.rst
-   elementwise/nan_to_num.rst
-   elementwise/logaddexp2.rst
 
