@@ -29,12 +29,12 @@ Array
    array/data_type.rst
    array/device.rst
    array/elementwise.rst
-   array/experimental.rst
+   array/extensions.rst
    array/general.rst
    array/gradients.rst
    array/image.rst
    array/layers.rst
-   array/linalg.rst
+   array/linear_algebra.rst
    array/losses.rst
    array/manipulation.rst
    array/norms.rst
