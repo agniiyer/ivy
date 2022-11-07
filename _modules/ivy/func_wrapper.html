@@ -50,7 +50,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Functions</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../functional/extensions.html">Extensions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../functional/experimental.html">Experimental</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../functional/ivy/activations.html">Activations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../functional/ivy/compilation.html">Compilation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../functional/ivy/constants.html">Constants</a></li>
@@ -61,7 +61,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../functional/ivy/general.html">General</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../functional/ivy/gradients.html">Gradients</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../functional/ivy/layers.html">Layers</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../functional/ivy/linear_algebra.html">Linear algebra</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../functional/ivy/linalg.html">Linalg</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../functional/ivy/losses.html">Losses</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../functional/ivy/manipulation.html">Manipulation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../functional/ivy/meta.html">Meta</a></li>
@@ -603,6 +603,9 @@
 
 <span class="c1"># Gets dtype from a version dictionary</span>
 <span class="k">def</span> <span class="nf">_dtype_from_version</span><span class="p">(</span><span class="n">dic</span><span class="p">,</span> <span class="n">version</span><span class="p">):</span>
+    <span class="c1"># if version is a string, it&#39;s a frontend function</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">version</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="n">version</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">functional</span><span class="o">.</span><span class="n">frontends</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="s2">&quot;versions&quot;</span><span class="p">][</span><span class="n">version</span><span class="p">]</span>
     <span class="c1"># if version is a dict, extract the version</span>
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">version</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
         <span class="n">version</span> <span class="o">=</span> <span class="n">version</span><span class="p">[</span><span class="s2">&quot;version&quot;</span><span class="p">]</span>
