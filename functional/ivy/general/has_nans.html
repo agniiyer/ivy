@@ -77,6 +77,9 @@
 <li class="toctree-l2"><a class="reference internal" href="set_exception_trace_mode.html">set_exception_trace_mode</a></li>
 <li class="toctree-l2"><a class="reference internal" href="unset_exception_trace_mode.html">unset_exception_trace_mode</a></li>
 <li class="toctree-l2"><a class="reference internal" href="get_exception_trace_mode.html">get_exception_trace_mode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="set_show_func_wrapper_trace_mode.html">set_show_func_wrapper_trace_mode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="unset_show_func_wrapper_trace_mode.html">unset_show_func_wrapper_trace_mode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="get_show_func_wrapper_trace_mode.html">get_show_func_wrapper_trace_mode</a></li>
 <li class="toctree-l2"><a class="reference internal" href="array_equal.html">array_equal</a></li>
 <li class="toctree-l2"><a class="reference internal" href="all_equal.html">all_equal</a></li>
 <li class="toctree-l2"><a class="reference internal" href="to_numpy.html">to_numpy</a></li>
@@ -147,7 +150,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../gradients.html">Gradients</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../layers.html">Layers</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../linalg.html">Linalg</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linear_algebra.html">Linear algebra</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../losses.html">Losses</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../manipulation.html">Manipulation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../meta.html">Meta</a></li>
@@ -279,7 +282,7 @@ instances in place of any of the arguments.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="ivy.array.array_methods.has_nans">
-<span class="sig-prename descclassname">ivy.Array.</span></span><span class="sig-name descname"><span class="pre">has_nans</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_infs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/ivy/array/general.html#ArrayWithGeneral.has_nans"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ivy.array.array_methods.has_nans" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname">ivy.Array.</span></span><span class="sig-name descname"><span class="pre">has_nans</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">/</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_infs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/ivy/array/general.html#ArrayWithGeneral.has_nans"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ivy.array.array_methods.has_nans" title="Permalink to this definition"></a></dt>
 <dd><p>ivy.Array instance method variant of <a href="./has_nans/has_nans_functional.html">ivy.has_nans</a>. This method simply wraps the
 function, and so the docstring for <a href="./has_nans/has_nans_functional.html">ivy.has_nans</a> also applies to this method
 with minimal changes.</p>

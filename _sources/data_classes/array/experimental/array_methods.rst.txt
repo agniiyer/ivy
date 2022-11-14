@@ -20,6 +20,7 @@ Array methods
    array_methods/trapz.rst
    array_methods/float_power.rst
    array_methods/exp2.rst
+   array_methods/count_nonzero.rst
    array_methods/nansum.rst
    array_methods/gcd.rst
    array_methods/isclose.rst
@@ -28,10 +29,16 @@ Array methods
    array_methods/nan_to_num.rst
    array_methods/logaddexp2.rst
    array_methods/signbit.rst
-   array_methods/max_pool2d.rst
+   array_methods/allclose.rst
+   array_methods/fix.rst
+   array_methods/nextafter.rst
    array_methods/max_pool1d.rst
+   array_methods/max_pool2d.rst
    array_methods/max_pool3d.rst
+   array_methods/avg_pool1d.rst
+   array_methods/avg_pool2d.rst
    array_methods/avg_pool3d.rst
+   array_methods/dct.rst
    array_methods/diagflat.rst
    array_methods/kron.rst
    array_methods/moveaxis.rst
@@ -45,8 +52,13 @@ Array methods
    array_methods/i0.rst
    array_methods/flatten.rst
    array_methods/pad.rst
+   array_methods/vsplit.rst
+   array_methods/dsplit.rst
+   array_methods/dstack.rst
+   array_methods/atleast_2d.rst
    array_methods/dirichlet.rst
    array_methods/msort.rst
    array_methods/median.rst
    array_methods/nanmean.rst
+   array_methods/unravel_index.rst
 
