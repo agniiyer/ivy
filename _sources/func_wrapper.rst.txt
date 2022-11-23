@@ -13,6 +13,7 @@ Func wrapper
    :maxdepth: -1
    :caption: Func wrapper
 
+   func_wrapper/handle_array_like.rst
    func_wrapper/inputs_to_native_arrays.rst
    func_wrapper/inputs_to_ivy_arrays.rst
    func_wrapper/outputs_to_ivy_arrays.rst
@@ -23,4 +24,5 @@ Func wrapper
    func_wrapper/infer_device.rst
    func_wrapper/handle_out_argument.rst
    func_wrapper/handle_nestable.rst
+   func_wrapper/handle_nans.rst
 
