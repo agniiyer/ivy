@@ -5076,6 +5076,41 @@
 
 
 <span class="k">def</span> <span class="fm">__pow__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">power</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    ivy.Container special method for the power operator, calling</span>
+<span class="sd">    :code:`operator.pow` for each of the corresponding leaves of</span>
+<span class="sd">    the two containers.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    self</span>
+<span class="sd">        input container. Should have a numeric data type.</span>
+<span class="sd">    other</span>
+<span class="sd">        input array or container of powers. Must be compatible</span>
+<span class="sd">        with ``self`` (see :ref:`broadcasting`). Should have a numeric</span>
+<span class="sd">        data type.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    ret</span>
+<span class="sd">        a container containing the element-wise sums. The returned array must have a</span>
+<span class="sd">        data type determined by :ref:`type-promotion`.</span>
+<span class="sd">    With :class:`ivy.Container` input:</span>
+<span class="sd">    &gt;&gt;&gt; x = ivy.Container(a=ivy.array([0, 1]), b=ivy.array([2, 3]))</span>
+<span class="sd">    &gt;&gt;&gt; y = x ** 2</span>
+<span class="sd">    &gt;&gt;&gt; print(y)</span>
+<span class="sd">    {</span>
+<span class="sd">        a: ivy.array([0, 1]),</span>
+<span class="sd">        b: ivy.array([4, 9])</span>
+<span class="sd">    }</span>
+<span class="sd">    &gt;&gt;&gt; x = ivy.Container(a=ivy.array([0, 1.2]), b=ivy.array([2.2, 3.]))</span>
+<span class="sd">    &gt;&gt;&gt; y = x ** 3.1</span>
+<span class="sd">    &gt;&gt;&gt; print(y)</span>
+<span class="sd">    {</span>
+<span class="sd">        a: ivy.array([0., 1.75979435]),</span>
+<span class="sd">        b: ivy.array([11.52153397, 30.13532257])</span>
+<span class="sd">    }</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">power</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="o">.</span><span class="n">multi_map</span><span class="p">(</span>
             <span class="k">lambda</span> <span class="n">xs</span><span class="p">,</span> <span class="n">_</span><span class="p">:</span> <span class="n">operator</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="n">xs</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">xs</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span> <span class="p">[</span><span class="bp">self</span><span class="p">,</span> <span class="n">power</span><span class="p">],</span> <span class="n">map_nests</span><span class="o">=</span><span class="kc">True</span>
@@ -5298,6 +5333,50 @@
 
 
 <span class="k">def</span> <span class="fm">__truediv__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    ivy.Container special method for the divide operator, calling</span>
+<span class="sd">    :code:`operator.truediv` for each of the corresponding leaves of</span>
+<span class="sd">    the two containers.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    self</span>
+<span class="sd">        first input container. Should have a numeric data type.</span>
+<span class="sd">    other</span>
+<span class="sd">        second input array or container. Must be compatible with ``self``</span>
+<span class="sd">        (see :ref:`broadcasting`). Should have a numeric data type.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    ret</span>
+<span class="sd">        a container containing the element-wise differences. The returned array must</span>
+<span class="sd">        have a data type determined by :ref:`type-promotion`.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    With :code:`Number` instances at the leaves:</span>
+<span class="sd">    &gt;&gt;&gt; x = ivy.Container(a=1, b=2)</span>
+<span class="sd">    &gt;&gt;&gt; y = ivy.Container(a=5, b=4)</span>
+<span class="sd">    &gt;&gt;&gt; z = x / y</span>
+<span class="sd">    &gt;&gt;&gt; print(z)</span>
+<span class="sd">    {</span>
+<span class="sd">        a: 0.2,</span>
+<span class="sd">        b: 0.5</span>
+<span class="sd">    }</span>
+<span class="sd">    With :class:`ivy.Array` instances at the leaves:</span>
+
+
+<span class="sd">    &gt;&gt;&gt; x = ivy.Container(a=ivy.array([1, 2, 3]),</span>
+<span class="sd">    ...                   b=ivy.array([4, 3, 2]))</span>
+<span class="sd">    &gt;&gt;&gt; y = ivy.Container(a=ivy.array([4, 5, 6]),</span>
+<span class="sd">    ...                   b=ivy.array([6, 5, 4]))</span>
+<span class="sd">    &gt;&gt;&gt; z = x / y</span>
+<span class="sd">    &gt;&gt;&gt; print(z)</span>
+<span class="sd">    {</span>
+<span class="sd">        a: ivy.array([0.25, 0.40000001, 0.5]),</span>
+<span class="sd">        b: ivy.array([0.66666669, 0.60000002, 0.5])</span>
+<span class="sd">    }</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="o">.</span><span class="n">multi_map</span><span class="p">(</span>
         <span class="k">lambda</span> <span class="n">xs</span><span class="p">,</span> <span class="n">_</span><span class="p">:</span> <span class="n">operator</span><span class="o">.</span><span class="n">truediv</span><span class="p">(</span><span class="n">xs</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">xs</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span> <span class="p">[</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">],</span> <span class="n">map_nests</span><span class="o">=</span><span class="kc">True</span>
     <span class="p">)</span>
@@ -5324,6 +5403,34 @@
 
 
 <span class="k">def</span> <span class="fm">__abs__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    ivy.Container special method for the abs operator, calling</span>
+<span class="sd">    :code:`operator.abs` for each of the corresponding leaves of the</span>
+<span class="sd">    two containers.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    self</span>
+<span class="sd">        input Container. Should have leaves with numeric data type.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    ret</span>
+<span class="sd">        A container containing the element-wise results.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    With :class:`ivy.Container` instances:</span>
+
+<span class="sd">    &gt;&gt;&gt; x = ivy.Container(a=ivy.array([1, -2, 3]),</span>
+<span class="sd">    ...                    b=ivy.array([-1, 0, 5]))</span>
+<span class="sd">    &gt;&gt;&gt; y = abs(x)</span>
+<span class="sd">    &gt;&gt;&gt; print(y)</span>
+<span class="sd">    {</span>
+<span class="sd">        a: ivy.array([1, 2, 3]),</span>
+<span class="sd">        b: ivy.array([1, 0, 5])</span>
+<span class="sd">    }</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">kc</span><span class="p">:</span> <span class="n">operator</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">map_sequences</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 
@@ -5406,6 +5513,61 @@
 
 
 <span class="k">def</span> <span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    ivy.Container special method for the equal operator, calling</span>
+<span class="sd">    :code:`operator.eq` for each of the corresponding leaves of the two containers.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    self</span>
+<span class="sd">        first input Container. May have any data type.</span>
+<span class="sd">    other</span>
+<span class="sd">        second input Container. Must be compatible with x1 (with Broadcasting).</span>
+<span class="sd">        May have any data type.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    ret</span>
+<span class="sd">        A container containing the element-wise results. Any returned array inside</span>
+<span class="sd">        must have a data type of bool.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    With :class:`ivy.Container` instances:</span>
+
+<span class="sd">    &gt;&gt;&gt; x1 = ivy.Container(a=ivy.array([1, 2, 3]),</span>
+<span class="sd">    ...                    b=ivy.array([1, 3, 5]))</span>
+<span class="sd">    &gt;&gt;&gt; x2 = ivy.Container(a=ivy.array([1, 2, 3]),</span>
+<span class="sd">    ...                    b=ivy.array([1, 4, 5]))</span>
+<span class="sd">    &gt;&gt;&gt; y = x1 == x2</span>
+<span class="sd">    &gt;&gt;&gt; print(y)</span>
+<span class="sd">    {</span>
+<span class="sd">        a: ivy.array([True, True, True]),</span>
+<span class="sd">        b: ivy.array([True, False, True])</span>
+<span class="sd">    }</span>
+
+<span class="sd">    &gt;&gt;&gt; x1 = ivy.Container(a=ivy.array([1.0, 2.0, 3.0]),</span>
+<span class="sd">    ...                    b=ivy.array([1, 4, 5]))</span>
+<span class="sd">    &gt;&gt;&gt; x2 = ivy.Container(a=ivy.array([1, 3, 3.0]),</span>
+<span class="sd">    ...                    b=ivy.array([1.0, 4.0, 5.0]))</span>
+<span class="sd">    &gt;&gt;&gt; y = x1 == x2</span>
+<span class="sd">    &gt;&gt;&gt; print(y)</span>
+<span class="sd">    {</span>
+<span class="sd">        a: ivy.array([True, False, True]),</span>
+<span class="sd">        b: ivy.array([True, True, True])</span>
+<span class="sd">    }</span>
+
+<span class="sd">    &gt;&gt;&gt; x1 = ivy.Container(a=ivy.array([1.0, 2.0, 3.0]),</span>
+<span class="sd">    ...                    b=ivy.array([1, 4, 5]))</span>
+<span class="sd">    &gt;&gt;&gt; x2 = ivy.Container(a=ivy.array([1, 2, 3.0]),</span>
+<span class="sd">    ...                    b=ivy.array([1.0, 4.0, 5.0]))</span>
+<span class="sd">    &gt;&gt;&gt; y = x1 == x2</span>
+<span class="sd">    &gt;&gt;&gt; print(y)</span>
+<span class="sd">    {</span>
+<span class="sd">        a: ivy.array([True, True, True]),</span>
+<span class="sd">        b: ivy.array([True, True, True])</span>
+<span class="sd">    }</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="o">.</span><span class="n">multi_map</span><span class="p">(</span>
             <span class="k">lambda</span> <span class="n">xs</span><span class="p">,</span> <span class="n">_</span><span class="p">:</span> <span class="n">operator</span><span class="o">.</span><span class="n">eq</span><span class="p">(</span><span class="n">xs</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">xs</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span> <span class="p">[</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">],</span> <span class="n">map_nests</span><span class="o">=</span><span class="kc">True</span>
@@ -5467,18 +5629,6 @@
 <span class="sd">    {</span>
 <span class="sd">        a: ivy.array([False, False, False]),</span>
 <span class="sd">        b: ivy.array([False, False, False])</span>
-<span class="sd">    }</span>
-<span class="sd">    With a mix of :class:`ivy.Array` and :class:`ivy.Container` instances:</span>
-
-<span class="sd">    &gt;&gt;&gt; x1 = ivy.Container(a=ivy.array([1, 2, 3]),</span>
-<span class="sd">    ...                    b=ivy.array([1, 3, 5]))</span>
-<span class="sd">    &gt;&gt;&gt; x2 = ivy.Container(a=ivy.array([1, 2, 3]),</span>
-<span class="sd">    ...                    b=ivy.array([1, 4, 5]))</span>
-<span class="sd">    &gt;&gt;&gt; y = x1 != x2</span>
-<span class="sd">    &gt;&gt;&gt; print(y)</span>
-<span class="sd">    {</span>
-<span class="sd">        a: ivy.array([False, False, False]),</span>
-<span class="sd">        b: ivy.array([False, True, False])</span>
 <span class="sd">    }</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">):</span>
@@ -8229,8 +8379,8 @@
 <span class="sd">    &gt;&gt;&gt; y = x.dev(as_native=as_native)</span>
 <span class="sd">    &gt;&gt;&gt; print(y)</span>
 <span class="sd">    {</span>
-<span class="sd">        a: cpu,</span>
-<span class="sd">        b: device(type=cpu)</span>
+<span class="sd">        a:cpu,</span>
+<span class="sd">        b:cpu</span>
 <span class="sd">    }</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">static_dev</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">as_native</span><span class="o">=</span><span class="n">as_native</span><span class="p">)</span>
@@ -10896,6 +11046,16 @@
 <span class="sd">        a: ivy.array([12., 1.52, 2.1]),</span>
 <span class="sd">        b: ivy.array([1.25, 0.333, 0.45])</span>
 <span class="sd">    }</span>
+<span class="sd">    With :code:`Number` instances at the leaves:</span>
+
+<span class="sd">    &gt;&gt;&gt; x = ivy.Container(a=1, b=2)</span>
+<span class="sd">    &gt;&gt;&gt; y = ivy.Container(a=5, b=4)</span>
+<span class="sd">    &gt;&gt;&gt; z = x.divide(y)</span>
+<span class="sd">    &gt;&gt;&gt; print(z)</span>
+<span class="sd">    {</span>
+<span class="sd">        a: 0.2,</span>
+<span class="sd">        b: 0.5</span>
+<span class="sd">    }</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">static_divide</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
@@ -10952,6 +11112,19 @@
 <span class="sd">    ret</span>
 <span class="sd">        a container containing the element-wise results. The returned container</span>
 <span class="sd">        must have a data type of ``bool``.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    With :class:`ivy.Container` inputs:</span>
+
+<span class="sd">    &gt;&gt;&gt; x1 = ivy.Container(a=ivy.array([12, 3.5, 6.3]), b=ivy.array([3., 1., 0.9]))</span>
+<span class="sd">    &gt;&gt;&gt; x2 = ivy.Container(a=ivy.array([12, 2.3, 3]), b=ivy.array([2.4, 3., 2.]))</span>
+<span class="sd">    &gt;&gt;&gt; y = ivy.Container.static_equal(x1, x2)</span>
+<span class="sd">    &gt;&gt;&gt; print(y)</span>
+<span class="sd">    {</span>
+<span class="sd">        a: ivy.array([True, False, False]),</span>
+<span class="sd">        b: ivy.array([False, False, False])</span>
+<span class="sd">    }</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">ContainerBase</span><span class="o">.</span><span class="n">multi_map_in_static_method</span><span class="p">(</span>
         <span class="s2">&quot;equal&quot;</span><span class="p">,</span>
@@ -14327,6 +14500,18 @@
 <span class="sd">    ret</span>
 <span class="sd">        a container containing the element-wise results. The returned container</span>
 <span class="sd">        must have a data type determined by :ref:`type-promotion`.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    With :class:`ivy.Container` input:</span>
+
+<span class="sd">    &gt;&gt;&gt; x = ivy.Container(a=ivy.array([0, 1]), b=ivy.array([2, 3]))</span>
+<span class="sd">    &gt;&gt;&gt; y = ivy.Container.static_pow(x, 2)</span>
+<span class="sd">    &gt;&gt;&gt; print(y)</span>
+<span class="sd">    {</span>
+<span class="sd">        a:ivy.array([0,1]),</span>
+<span class="sd">        b:ivy.array([8,27])</span>
+<span class="sd">    }</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">ContainerBase</span><span class="o">.</span><span class="n">multi_map_in_static_method</span><span class="p">(</span>
         <span class="s2">&quot;pow&quot;</span><span class="p">,</span>
@@ -14384,6 +14569,18 @@
 <span class="sd">    ret</span>
 <span class="sd">        a container containing the element-wise results. The returned container</span>
 <span class="sd">        must have a data type determined by :ref:`type-promotion`.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    With :class:`ivy.Container` input:</span>
+
+<span class="sd">    &gt;&gt;&gt; x = ivy.Container(a=ivy.array([0, 1]), b=ivy.array([2, 3]))</span>
+<span class="sd">    &gt;&gt;&gt; y = x.pow(3)</span>
+<span class="sd">    &gt;&gt;&gt; print(y)</span>
+<span class="sd">    {</span>
+<span class="sd">        a:ivy.array([0,1]),</span>
+<span class="sd">        b:ivy.array([8,27])</span>
+<span class="sd">    }</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">static_pow</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
@@ -15145,6 +15342,16 @@
 <span class="sd">        a container containing the square of each element in ``x``.</span>
 <span class="sd">        The returned container must have a real-valued floating-point</span>
 <span class="sd">        data type determined by :ref:`type-promotion`.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; x = ivy.Container(a=ivy.array([0, 1]), b=ivy.array([2, 3]))</span>
+<span class="sd">    &gt;&gt;&gt; y = ivy.Container.static_square(x)</span>
+<span class="sd">    &gt;&gt;&gt; print(y)</span>
+<span class="sd">    {</span>
+<span class="sd">        a:ivy.array([0,1]),</span>
+<span class="sd">        b:ivy.array([4,9])</span>
+<span class="sd">    }</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">ContainerBase</span><span class="o">.</span><span class="n">multi_map_in_static_method</span><span class="p">(</span>
         <span class="s2">&quot;square&quot;</span><span class="p">,</span>
@@ -15196,6 +15403,16 @@
 <span class="sd">        a container containing the square of each element in ``self``.</span>
 <span class="sd">        The returned container must have a real-valued floating-point</span>
 <span class="sd">        data type determined by :ref:`type-promotion`.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; x = ivy.Container(a=ivy.array([0, 1]), b=ivy.array([2, 3]))</span>
+<span class="sd">    &gt;&gt;&gt; y = x.square()</span>
+<span class="sd">    &gt;&gt;&gt; print(y)</span>
+<span class="sd">    {</span>
+<span class="sd">        a:ivy.array([0,1]),</span>
+<span class="sd">        b:ivy.array([4,9])</span>
+<span class="sd">    }</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">static_square</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
@@ -15904,6 +16121,17 @@
 <span class="sd">    -------</span>
 <span class="sd">    ret</span>
 <span class="sd">        a container containing the Gauss error of ``x``.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; x = ivy.Container(a=ivy.array([-0.25, 4, 1.3]),</span>
+<span class="sd">    ...                   b=ivy.array([12, -3.5, 1.234]))</span>
+<span class="sd">    &gt;&gt;&gt; y = ivy.Container.static_erf(x)</span>
+<span class="sd">    &gt;&gt;&gt; print(y)</span>
+<span class="sd">    {</span>
+<span class="sd">        a: ivy.array([-0.27632612, 1., 0.934008]),</span>
+<span class="sd">        b: ivy.array([1., -0.99999928, 0.91903949])</span>
+<span class="sd">    }</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">ContainerBase</span><span class="o">.</span><span class="n">multi_map_in_static_method</span><span class="p">(</span>
         <span class="s2">&quot;erf&quot;</span><span class="p">,</span>
@@ -15953,6 +16181,17 @@
 <span class="sd">    -------</span>
 <span class="sd">    ret</span>
 <span class="sd">        a container containing the Gauss error of ``self``.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; x = ivy.Container(a=ivy.array([-0.25, 4, 1.3]),</span>
+<span class="sd">    ...                   b=ivy.array([12, -3.5, 1.234]))</span>
+<span class="sd">    &gt;&gt;&gt; y = x.erf()</span>
+<span class="sd">    &gt;&gt;&gt; print(y)</span>
+<span class="sd">    {</span>
+<span class="sd">        a: ivy.array([-0.27632612, 1., 0.934008]),</span>
+<span class="sd">        b: ivy.array([1., -0.99999928, 0.91903949])</span>
+<span class="sd">    }</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">static_erf</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
@@ -16009,6 +16248,20 @@
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
 <span class="sd">        Container object with all sub-arrays having the minimum values computed.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    With multiple :class:`ivy.Container` inputs:</span>
+<span class="sd">    &gt;&gt;&gt; x = ivy.Container(a=ivy.array([1, 3, 1]),</span>
+<span class="sd">    ...                   b=ivy.array([2, 8, 5]))</span>
+<span class="sd">    &gt;&gt;&gt; y = ivy.Container(a=ivy.array([1, 5, 6]),</span>
+<span class="sd">    ...                   b=ivy.array([5, 9, 7]))</span>
+<span class="sd">    &gt;&gt;&gt; z = ivy.Container.static_minimum(x, y)</span>
+<span class="sd">    &gt;&gt;&gt; print(z)</span>
+<span class="sd">    {</span>
+<span class="sd">        a: ivy.array([1, 3, 1]),</span>
+<span class="sd">        b: ivy.array([2, 8, 5])</span>
+<span class="sd">    }</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">ContainerBase</span><span class="o">.</span><span class="n">multi_map_in_static_method</span><span class="p">(</span>
         <span class="s2">&quot;minimum&quot;</span><span class="p">,</span>
@@ -16068,6 +16321,20 @@
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
 <span class="sd">        Container object with all sub-arrays having the minimum values computed.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    With multiple :class:`ivy.Container` inputs:</span>
+<span class="sd">    &gt;&gt;&gt; x = ivy.Container(a=ivy.array([1, 3, 1]),</span>
+<span class="sd">    ...                   b=ivy.array([2, 8, 5]))</span>
+<span class="sd">    &gt;&gt;&gt; y = ivy.Container(a=ivy.array([1, 5, 6]),</span>
+<span class="sd">    ...                   b=ivy.array([5, 9, 7]))</span>
+<span class="sd">    &gt;&gt;&gt; z = x.minimum(y)</span>
+<span class="sd">    &gt;&gt;&gt; print(z)</span>
+<span class="sd">    {</span>
+<span class="sd">        a: ivy.array([1, 3, 1]),</span>
+<span class="sd">        b: ivy.array([2, 8, 5])</span>
+<span class="sd">    }</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">static_minimum</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
@@ -16128,6 +16395,23 @@
 <span class="sd">    ret</span>
 <span class="sd">        An array with the elements of x1, but clipped to not be lower than the x2</span>
 <span class="sd">        values.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    With one :class:`ivy.Container` input:</span>
+<span class="sd">    &gt;&gt;&gt; x = ivy.array([[1, 3], [2, 4], [3, 7]])</span>
+<span class="sd">    &gt;&gt;&gt; y = ivy.Container(a=ivy.array([1, 0,]),</span>
+<span class="sd">    ...                   b=ivy.array([-5, 9]))</span>
+<span class="sd">    &gt;&gt;&gt; z = ivy.Container.static_maximum(x, y)</span>
+<span class="sd">    &gt;&gt;&gt; print(z)</span>
+<span class="sd">    {</span>
+<span class="sd">        a: ivy.array([[1, 3],</span>
+<span class="sd">                      [2, 4],</span>
+<span class="sd">                      [3, 7]]),</span>
+<span class="sd">        b: ivy.array([[1, 9],</span>
+<span class="sd">                      [2, 9],</span>
+<span class="sd">                      [3, 9]])</span>
+<span class="sd">    }</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">ContainerBase</span><span class="o">.</span><span class="n">multi_map_in_static_method</span><span class="p">(</span>
         <span class="s2">&quot;maximum&quot;</span><span class="p">,</span>
@@ -16189,6 +16473,23 @@
 <span class="sd">    ret</span>
 <span class="sd">        An array with the elements of x1, but clipped to not be lower than the x2</span>
 <span class="sd">        values.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    With one :class:`ivy.Container` input:</span>
+<span class="sd">    &gt;&gt;&gt; x = ivy.array([[1, 3], [2, 4], [3, 7]])</span>
+<span class="sd">    &gt;&gt;&gt; y = ivy.Container(a=ivy.array([1, 0,]),</span>
+<span class="sd">    ...                   b=ivy.array([-5, 9]))</span>
+<span class="sd">    &gt;&gt;&gt; z = x.maximum(y)</span>
+<span class="sd">    &gt;&gt;&gt; print(z)</span>
+<span class="sd">    {</span>
+<span class="sd">        a: ivy.array([[1, 3],</span>
+<span class="sd">                      [2, 4],</span>
+<span class="sd">                      [3, 7]]),</span>
+<span class="sd">        b: ivy.array([[1, 9],</span>
+<span class="sd">                      [2, 9],</span>
+<span class="sd">                      [3, 9]])</span>
+<span class="sd">    }</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">static_maximum</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
@@ -17244,7 +17545,7 @@
 <span class="sd">    &gt;&gt;&gt; a = ivy.arange(12).reshape((2, 1, 3, 2))</span>
 <span class="sd">    &gt;&gt;&gt; b = ivy.arange(48).reshape((2, 4, 3, 2))</span>
 <span class="sd">    &gt;&gt;&gt; x = ivy.Container({&#39;a&#39;: a, &#39;b&#39;: b})</span>
-<span class="sd">    &gt;&gt;&gt; print(x.max_pool2d(2, 2), (1, 1), &quot;SAME&quot;))</span>
+<span class="sd">    &gt;&gt;&gt; print(x.max_pool2d((2, 2), (1, 1), &quot;SAME&quot;))</span>
 <span class="sd">    {</span>
 <span class="sd">        a: (&lt;class ivy.array.array.Array&gt; shape=[2, 1, 3, 2]),</span>
 <span class="sd">        b: (&lt;class ivy.array.array.Array&gt; shape=[2, 4, 3, 2])</span>
@@ -17649,8 +17950,8 @@
 <span class="sd">    &gt;&gt;&gt; x = ivy.Container({&#39;a&#39;: a, &#39;b&#39;: b})</span>
 <span class="sd">    &gt;&gt;&gt; print(x.avg_pool2d((2, 2), (1, 1), &quot;SAME&quot;))</span>
 <span class="sd">    {</span>
-<span class="sd">        a: ivy.array([], shape=(2, 0, 2, 2)),</span>
-<span class="sd">        b: (&lt;class ivy.array.array.Array&gt; shape=[2, 3, 2, 2])</span>
+<span class="sd">        a: (&lt;class ivy.array.array.Array&gt; shape=[2, 1, 3, 2]),</span>
+<span class="sd">        b: (&lt;class ivy.array.array.Array&gt; shape=[2, 4, 3, 2])</span>
 <span class="sd">    }</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">static_avg_pool2d</span><span class="p">(</span>
@@ -23434,8 +23735,8 @@
 <span class="sd">    &gt;&gt;&gt; y = x1.allclose(x2)</span>
 <span class="sd">    &gt;&gt;&gt; print(y)</span>
 <span class="sd">    {</span>
-<span class="sd">        a: true,</span>
-<span class="sd">        b: true</span>
+<span class="sd">        a: True,</span>
+<span class="sd">        b: True</span>
 <span class="sd">    }</span>
 
 <span class="sd">    &gt;&gt;&gt; x1 = ivy.Container(a=ivy.array([1., 2., 3.]),\</span>
@@ -23445,8 +23746,8 @@
 <span class="sd">    &gt;&gt;&gt; y = x1.allclose(x2, rtol=1e-3)</span>
 <span class="sd">    &gt;&gt;&gt; print(y)</span>
 <span class="sd">    {</span>
-<span class="sd">        a: true,</span>
-<span class="sd">        b: true</span>
+<span class="sd">        a: True,</span>
+<span class="sd">        b: True</span>
 <span class="sd">    }</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">static_allclose</span><span class="p">(</span>
@@ -29399,18 +29700,59 @@
 <div class="viewcode-block" id="static_conv3d"><a class="viewcode-back" href="../../../functional/ivy/layers/conv3d/static_conv3d_container.html#ivy.container.container_methods.static_conv3d">[docs]</a><span class="k">def</span> <span class="nf">static_conv3d</span><span class="p">(</span>
     <span class="n">x</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">],</span>
     <span class="n">filters</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">],</span>
-    <span class="n">strides</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">strides</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]],</span>
     <span class="n">padding</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
     <span class="o">/</span><span class="p">,</span>
     <span class="o">*</span><span class="p">,</span>
     <span class="n">data_format</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;NDHWC&quot;</span><span class="p">,</span>
-    <span class="n">dilations</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="n">dilations</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]]]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
     <span class="n">key_chains</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">to_apply</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
     <span class="n">prune_unapplied</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="n">map_sequences</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="n">out</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    ivy.Container static method variant of ivy.conv3d. This method simply</span>
+<span class="sd">    wraps the function, and so the docstring for ivy.conv3d also applies</span>
+<span class="sd">    to this method with minimal changes.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    x</span>
+<span class="sd">        Input volume *[batch_size,d,h,w,d_in]*.</span>
+<span class="sd">    filters</span>
+<span class="sd">        Convolution filters *[fdfh,fw,d_in,d_out]*.</span>
+<span class="sd">    strides</span>
+<span class="sd">        The stride of the sliding window for each dimension of input.</span>
+<span class="sd">    padding</span>
+<span class="sd">        &quot;SAME&quot; or &quot;VALID&quot; indicating the algorithm, or list indicating</span>
+<span class="sd">        the per-dimension paddings.</span>
+<span class="sd">    data_format</span>
+<span class="sd">        &quot;NDHWC&quot; or &quot;NCDHW&quot;. Defaults to &quot;NDHWC&quot;.</span>
+<span class="sd">    dilations</span>
+<span class="sd">        The dilation factor for each dimension of input. (Default value = 1)</span>
+<span class="sd">    out</span>
+<span class="sd">        optional output array, for writing the result to. It must have a shape</span>
+<span class="sd">        that the inputs broadcast to.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    ret</span>
+<span class="sd">        The result of the convolution operation.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; x = ivy.Container(a = ivy.full((1, 2, 3, 3, 1),0.5),\</span>
+<span class="sd">                          b = ivy.full((1, 2, 5, 5, 1),1.))</span>
+<span class="sd">    &gt;&gt;&gt; filters = ivy.ones((3, 3, 3, 1, 1))</span>
+<span class="sd">    &gt;&gt;&gt; result = ivy.Container.static_conv3d(x, filters, 2, &#39;SAME&#39;)</span>
+<span class="sd">    &gt;&gt;&gt; print(result)</span>
+<span class="sd">    {</span>
+<span class="sd">        a: ivy.array([[[[[4.],[4.]],[[4.],[4.]]]]]),</span>
+<span class="sd">        b: ivy.array([[[[[8.],[12.],[8.]],[[12.],[18.],[12.]],[[8.],[12.],[8.]]]]])</span>
+<span class="sd">    }</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">ContainerBase</span><span class="o">.</span><span class="n">multi_map_in_static_method</span><span class="p">(</span>
         <span class="s2">&quot;conv3d&quot;</span><span class="p">,</span>
         <span class="n">x</span><span class="p">,</span>
@@ -29430,18 +29772,59 @@
 <div class="viewcode-block" id="conv3d"><a class="viewcode-back" href="../../../functional/ivy/layers/conv3d/conv3d_container.html#ivy.container.container_methods.conv3d">[docs]</a><span class="k">def</span> <span class="nf">conv3d</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">:</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">,</span>
     <span class="n">filters</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">],</span>
-    <span class="n">strides</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">strides</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]],</span>
     <span class="n">padding</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
     <span class="o">/</span><span class="p">,</span>
     <span class="o">*</span><span class="p">,</span>
     <span class="n">data_format</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;NDHWC&quot;</span><span class="p">,</span>
-    <span class="n">dilations</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="n">dilations</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]]]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
     <span class="n">key_chains</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">to_apply</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
     <span class="n">prune_unapplied</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="n">map_sequences</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="n">out</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    ivy.Container instance method variant of ivy.conv3d. This method simply</span>
+<span class="sd">    wraps the function, and so the docstring for ivy.conv3d also applies</span>
+<span class="sd">    to this method with minimal changes.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    x</span>
+<span class="sd">        Input volume *[batch_size,d,h,w,d_in]*.</span>
+<span class="sd">    filters</span>
+<span class="sd">        Convolution filters *[fdfh,fw,d_in,d_out]*.</span>
+<span class="sd">    strides</span>
+<span class="sd">        The stride of the sliding window for each dimension of input.</span>
+<span class="sd">    padding</span>
+<span class="sd">        &quot;SAME&quot; or &quot;VALID&quot; indicating the algorithm, or list indicating</span>
+<span class="sd">        the per-dimension paddings.</span>
+<span class="sd">    data_format</span>
+<span class="sd">        &quot;NDHWC&quot; or &quot;NCDHW&quot;. Defaults to &quot;NDHWC&quot;.</span>
+<span class="sd">    dilations</span>
+<span class="sd">        The dilation factor for each dimension of input. (Default value = 1)</span>
+<span class="sd">    out</span>
+<span class="sd">        optional output array, for writing the result to. It must have a shape</span>
+<span class="sd">        that the inputs broadcast to.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    ret</span>
+<span class="sd">        The result of the convolution operation.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; x = ivy.Container(a = ivy.full((1, 2, 3, 3, 1),0.5),\</span>
+<span class="sd">                          b = ivy.full((1, 2, 5, 5, 1),1.))</span>
+<span class="sd">    &gt;&gt;&gt; filters = ivy.ones((3, 3, 3, 1, 1))</span>
+<span class="sd">    &gt;&gt;&gt; result = x.conv3d(filters, 2, &#39;SAME&#39;)</span>
+<span class="sd">    &gt;&gt;&gt; print(result)</span>
+<span class="sd">    {</span>
+<span class="sd">        a: ivy.array([[[[[4.],[4.]],[[4.],[4.]]]]]),</span>
+<span class="sd">        b: ivy.array([[[[[8.],[12.],[8.]],[[12.],[18.],[12.]],[[8.],[12.],[8.]]]]])</span>
+<span class="sd">    }</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">static_conv3d</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">filters</span><span class="p">,</span>
@@ -36352,8 +36735,8 @@
 <span class="sd">    &gt;&gt;&gt; y = ivy.static_unique_counts(x)</span>
 <span class="sd">    &gt;&gt;&gt; print(y)</span>
 <span class="sd">    {</span>
-<span class="sd">        a: (list[2],&lt;classivy.array.Array&gt;shape=[4]),</span>
-<span class="sd">        b: (list[2],&lt;classivy.array.Array&gt;shape=[4])</span>
+<span class="sd">        a:[values=ivy.array([0.,1.,2.,3.]),counts=ivy.array([2,2,1,1])],</span>
+<span class="sd">        b:[values=ivy.array([1,2,3,4]),counts=ivy.array([3,1,2,1])]</span>
 <span class="sd">    }</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">ContainerBase</span><span class="o">.</span><span class="n">multi_map_in_static_method</span><span class="p">(</span>
@@ -36418,9 +36801,8 @@
 <span class="sd">    &gt;&gt;&gt; y = x.unique_counts()</span>
 <span class="sd">    &gt;&gt;&gt; print(y)</span>
 <span class="sd">    {</span>
-<span class="sd">        a: (list[2],&lt;classivy.array.array.Array&gt;shape=[4]),</span>
-<span class="sd">        b: (list[2],&lt;classivy.array.array.Array&gt;shape=[4])</span>
-<span class="sd">    }</span>
+<span class="sd">        a:[values=ivy.array([0.,1.,2.,3.]),counts=ivy.array([2,2,1,1])],</span>
+<span class="sd">        b:[values=ivy.array([1,2,3,4]),counts=ivy.array([3,1,2,1])]}</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">static_unique_counts</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
@@ -36540,10 +36922,9 @@
 <span class="sd">    ...                   b=ivy.array([7,6,4,5,6,3,2]))</span>
 <span class="sd">    &gt;&gt;&gt; y = x.unique_inverse()</span>
 <span class="sd">    &gt;&gt;&gt; print(y)</span>
-<span class="sd">         {</span>
-<span class="sd">           a: (list[2], &lt;class ivy.array.array.Array&gt; shape=[5]),</span>
-<span class="sd">           b: (list[2], &lt;class ivy.array.array.Array&gt; shape=[6])</span>
-<span class="sd">         }</span>
+<span class="sd">    {</span>
+<span class="sd">        a:[values=ivy.array([3.,4.,5.,8.,9.]),inverse_indices=ivy.array([1,3,0,2,4,1])],</span>
+<span class="sd">        b:[values=ivy.array([2,3,4,5,6,7]),inverse_indices=ivy.array([5,4,2,3,4,1,0])]}</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">static_unique_inverse</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
@@ -37030,8 +37411,8 @@
 <span class="sd">    &gt;&gt;&gt; z = x.min(axis=1)</span>
 <span class="sd">    &gt;&gt;&gt; print(z)</span>
 <span class="sd">    {</span>
-<span class="sd">        a: ivy.array([1, 0]),</span>
-<span class="sd">        b: ivy.array([2, 0])</span>
+<span class="sd">        a:ivy.array([1,-1]),</span>
+<span class="sd">        b:ivy.array([2,0])</span>
 <span class="sd">    }</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">handle_inplace</span><span class="p">(</span>

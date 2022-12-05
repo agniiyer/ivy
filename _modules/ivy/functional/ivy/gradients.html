@@ -133,6 +133,7 @@
 <span class="c1"># global</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Tuple</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">itertools</span>
 
 <span class="c1"># local</span>
 <span class="kn">import</span> <span class="nn">ivy</span>
@@ -157,8 +158,8 @@
         <span class="k">def</span> <span class="nf">inner_fn</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
             <span class="k">if</span> <span class="n">ivy</span><span class="o">.</span><span class="n">is_array</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">exclusive</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
                 <span class="k">if</span> <span class="n">ivy</span><span class="o">.</span><span class="n">is_int_dtype</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">dtype</span><span class="p">):</span>
-                    <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">ivy</span><span class="o">.</span><span class="n">default_float_dtype</span><span class="p">())</span>
-                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">default_float_dtype</span><span class="p">())</span>
+                <span class="k">elif</span> <span class="n">_is_variable</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
                     <span class="n">x</span> <span class="o">=</span> <span class="n">stop_gradient</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">preserve_type</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
                 <span class="k">return</span> <span class="n">_variable</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
@@ -300,6 +301,21 @@
         <span class="n">arr_values</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">multi_index_nest</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">arr_idxs</span><span class="p">)</span>
         <span class="n">arr_idxs</span> <span class="o">=</span> <span class="n">_idxs_to_str</span><span class="p">(</span><span class="n">arr_idxs</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">arr_idxs</span><span class="p">,</span> <span class="n">arr_values</span>
+
+
+<span class="k">def</span> <span class="nf">_set_duplicates</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">duplicate_index_chains</span><span class="p">):</span>
+    <span class="n">originals</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">[</span><span class="n">key_chains</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">*</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">key_chains</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">key_chains</span> <span class="ow">in</span> <span class="n">duplicate_index_chains</span>
+    <span class="p">]</span>
+    <span class="n">originals</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">multi_index_nest</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="n">itertools</span><span class="o">.</span><span class="n">chain</span><span class="p">(</span><span class="o">*</span><span class="n">originals</span><span class="p">)))</span>
+    <span class="n">duplicates</span> <span class="o">=</span> <span class="p">[</span><span class="nb">list</span><span class="p">(</span><span class="n">index_chains</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span> <span class="k">for</span> <span class="n">index_chains</span> <span class="ow">in</span> <span class="n">duplicate_index_chains</span><span class="p">]</span>
+    <span class="n">nullifying_index_chains</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="p">[</span><span class="n">index_chain</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)</span> <span class="k">for</span> <span class="n">index_chain</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">itertools</span><span class="o">.</span><span class="n">chain</span><span class="p">(</span><span class="o">*</span><span class="n">duplicates</span><span class="p">))]</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">)</span>
+        <span class="k">else</span> <span class="nb">list</span><span class="p">(</span><span class="n">itertools</span><span class="o">.</span><span class="n">chain</span><span class="p">(</span><span class="o">*</span><span class="n">duplicates</span><span class="p">))</span>
+    <span class="p">)</span>
+    <span class="n">ivy</span><span class="o">.</span><span class="n">set_nest_at_indices</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">nullifying_index_chains</span><span class="p">,</span> <span class="n">originals</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">xs</span>
 
 
 <span class="k">def</span> <span class="nf">_stop_grad_and_index</span><span class="p">(</span><span class="n">func_ret</span><span class="p">,</span> <span class="n">retain_grads</span><span class="p">,</span> <span class="n">grads</span><span class="p">):</span>
@@ -573,8 +589,7 @@
 <span class="c1"># AutoGrad #</span>
 
 
-<div class="viewcode-block" id="execute_with_gradients"><a class="viewcode-back" href="../../../../functional/ivy/gradients/execute_with_gradients.html#ivy.functional.ivy.gradients.execute_with_gradients">[docs]</a><span class="nd">@inputs_to_ivy_arrays</span>
-<span class="nd">@handle_exceptions</span>
+<div class="viewcode-block" id="execute_with_gradients"><a class="viewcode-back" href="../../../../functional/ivy/gradients/execute_with_gradients.html#ivy.functional.ivy.gradients.execute_with_gradients">[docs]</a><span class="nd">@handle_exceptions</span>
 <span class="nd">@handle_array_like</span>
 <span class="k">def</span> <span class="nf">execute_with_gradients</span><span class="p">(</span>
     <span class="n">func</span><span class="p">,</span> <span class="n">xs</span><span class="p">,</span> <span class="o">/</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">retain_grads</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">xs_grad_idxs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ret_grad_idxs</span><span class="o">=</span><span class="kc">None</span>
@@ -779,9 +794,9 @@
 <span class="sd">    &gt;&gt;&gt; step = ivy.array(3)</span>
 <span class="sd">    &gt;&gt;&gt; adam_step_delta = ivy.adam_step(dcdw, mw, vw, step)</span>
 <span class="sd">    &gt;&gt;&gt; print(adam_step_delta)</span>
-<span class="sd">    (ivy.array([0.182, 0.182, 0.182]),</span>
-<span class="sd">    ... ivy.array([0.9, 0.9, 0.9]),</span>
-<span class="sd">    ... ivy.array([0.999, 0.999, 0.999]))</span>
+<span class="sd">    (ivy.array([0.2020105,0.22187898,0.24144873]),</span>
+<span class="sd">        ivy.array([1.,1.10000002,1.20000005]),</span>
+<span class="sd">        ivy.array([1.,1.00300002,1.00800002]))</span>
 
 <span class="sd">    &gt;&gt;&gt; dcdw = ivy.array([[1., 4., -3.], [2., 3., 0.5]])</span>
 <span class="sd">    &gt;&gt;&gt; mw = ivy.zeros((2,3))</span>
