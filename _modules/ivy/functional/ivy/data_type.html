@@ -96,6 +96,17 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../../nested_array/nested_array.html">Nested array</a></li>
 </ul>
+<p class="caption" role="heading"><span class="caption-text">Testing</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../testing/assertions.html">Assertions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../testing/available_frameworks.html">Available frameworks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../testing/function_testing.html">Function testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../testing/globals.html">Globals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../testing/hypothesis_helpers.html">Hypothesis helpers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../testing/structs.html">Structs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../testing/test_parameter_flags.html">Test parameter flags</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../testing/testing_helpers.html">Testing helpers</a></li>
+</ul>
 <p class="caption" role="heading"><span class="caption-text">Docs</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../../../ivy"">Ivy</a></li>
@@ -233,7 +244,7 @@
                 <span class="k">if</span> <span class="p">(</span>
                     <span class="nb">hasattr</span><span class="p">(</span><span class="n">nodef</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">)</span>
                     <span class="ow">and</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">nodef</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="s2">&quot;id&quot;</span><span class="p">)</span>
-                    <span class="ow">and</span> <span class="n">nodef</span><span class="o">.</span><span class="n">value</span><span class="o">.</span><span class="n">id</span> <span class="o">!=</span> <span class="s2">&quot;ivy&quot;</span>
+                    <span class="ow">and</span> <span class="n">nodef</span><span class="o">.</span><span class="n">value</span><span class="o">.</span><span class="n">id</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;ivy&quot;</span><span class="p">,</span> <span class="s2">&quot;self&quot;</span><span class="p">]</span>
                 <span class="p">):</span>
                     <span class="k">continue</span>
                 <span class="n">names</span><span class="p">[</span><span class="n">nodef</span><span class="o">.</span><span class="n">attr</span><span class="p">]</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span>
@@ -2031,7 +2042,9 @@
         <span class="k">return</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">dtype_in</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">unsignedinteger</span><span class="p">)</span>
     <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">dtype_in</span><span class="p">,</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">,</span> <span class="nb">dict</span><span class="p">)):</span>
         <span class="k">return</span> <span class="n">ivy</span><span class="o">.</span><span class="n">nested_argwhere</span><span class="p">(</span>
-            <span class="n">dtype_in</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">unsignedinteger</span><span class="p">)</span>
+            <span class="n">dtype_in</span><span class="p">,</span>
+            <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">unsignedinteger</span><span class="p">)</span>
+            <span class="ow">or</span> <span class="p">(</span><span class="n">ivy</span><span class="o">.</span><span class="n">is_array</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="ow">and</span> <span class="s2">&quot;uint&quot;</span> <span class="ow">in</span> <span class="n">ivy</span><span class="o">.</span><span class="n">dtype</span><span class="p">(</span><span class="n">x</span><span class="p">)),</span>
         <span class="p">)</span>
     <span class="k">return</span> <span class="s2">&quot;uint&quot;</span> <span class="ow">in</span> <span class="n">as_ivy_dtype</span><span class="p">(</span><span class="n">dtype_in</span><span class="p">)</span></div>
 
@@ -2074,7 +2087,9 @@
         <span class="k">return</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">dtype_in</span><span class="p">,</span> <span class="p">(</span><span class="nb">complex</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">complexfloating</span><span class="p">))</span>
     <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">dtype_in</span><span class="p">,</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">,</span> <span class="nb">dict</span><span class="p">)):</span>
         <span class="k">return</span> <span class="n">ivy</span><span class="o">.</span><span class="n">nested_argwhere</span><span class="p">(</span>
-            <span class="n">dtype_in</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="p">(</span><span class="nb">complex</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">complexfloating</span><span class="p">))</span>
+            <span class="n">dtype_in</span><span class="p">,</span>
+            <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="p">(</span><span class="nb">complex</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">complexfloating</span><span class="p">))</span>
+            <span class="ow">or</span> <span class="p">(</span><span class="n">ivy</span><span class="o">.</span><span class="n">is_array</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="ow">and</span> <span class="s2">&quot;complex&quot;</span> <span class="ow">in</span> <span class="n">ivy</span><span class="o">.</span><span class="n">dtype</span><span class="p">(</span><span class="n">x</span><span class="p">)),</span>
         <span class="p">)</span>
     <span class="k">return</span> <span class="s2">&quot;complex&quot;</span> <span class="ow">in</span> <span class="n">as_ivy_dtype</span><span class="p">(</span><span class="n">dtype_in</span><span class="p">)</span></div>
 

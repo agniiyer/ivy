@@ -123,6 +123,17 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../nested_array/nested_array.html">Nested array</a></li>
 </ul>
+<p class="caption" role="heading"><span class="caption-text">Testing</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../testing/assertions.html">Assertions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../testing/available_frameworks.html">Available frameworks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../testing/function_testing.html">Function testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../testing/globals.html">Globals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../testing/hypothesis_helpers.html">Hypothesis helpers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../testing/structs.html">Structs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../testing/test_parameter_flags.html">Test parameter flags</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../testing/testing_helpers.html">Testing helpers</a></li>
+</ul>
 <p class="caption" role="heading"><span class="caption-text">Docs</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../ivy"">Ivy</a></li>
@@ -202,6 +213,38 @@ Otherwise if eps is defined, x is clamped to [eps, 1 - eps]</p></li>
 </div>
 </dd></dl>
 
+<dl class="py method">
+<dt class="sig sig-object py" id="ivy.array.experimental.ArrayWithActivationsExperimental.thresholded_relu">
+<span class="sig-name descname"><span class="pre">thresholded_relu</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ivy/array/experimental/activations.html#ArrayWithActivationsExperimental.thresholded_relu"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ivy.array.experimental.ArrayWithActivationsExperimental.thresholded_relu" title="Permalink to this definition"></a></dt>
+<dd><p>ivy.Array instance method variant of ivy.thresholded_relu.
+This method simply wraps the function, and so the docstring
+for ivy.thresholded_relu also applies to this method with minimal changes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>self</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Array</span></code>) – input array.</p></li>
+<li><p><strong>threshold</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]]) – threshold value above which the activation is linear. Default: <code class="docutils literal notranslate"><span class="pre">0</span></code>. (default: <code class="docutils literal notranslate"><span class="pre">0</span></code>)</p></li>
+<li><p><strong>out</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Array</span></code>]) – optional output array, for writing the result to. It must have a shape (default: <code class="docutils literal notranslate"><span class="pre">None</span></code>)
+that the inputs broadcast to.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Array</span></code></p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><em>ret</em> – an array with the relu activation function applied element-wise
+with custom threshold.</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">.2</span><span class="p">,</span> <span class="mf">1.</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">thresholded_relu</span><span class="p">(</span><span class="n">threshold</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+<span class="go">ivy.array([0., 0., 1.])</span>
+</pre></div>
+</div>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
@@ -214,6 +257,45 @@ Otherwise if eps is defined, x is clamped to [eps, 1 - eps]</p></li>
 <dt class="sig sig-object py" id="ivy.array.experimental.ArrayWithCreationExperimental">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ivy.array.experimental.</span></span><span class="sig-name descname"><span class="pre">ArrayWithCreationExperimental</span></span><a class="reference internal" href="../../_modules/ivy/array/experimental/creation.html#ArrayWithCreationExperimental"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ivy.array.experimental.ArrayWithCreationExperimental" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="ivy.array.experimental.ArrayWithCreationExperimental.eye_like">
+<span class="sig-name descname"><span class="pre">eye_like</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ivy/array/experimental/creation.html#ArrayWithCreationExperimental.eye_like"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ivy.array.experimental.ArrayWithCreationExperimental.eye_like" title="Permalink to this definition"></a></dt>
+<dd><p>ivy.Array instance method variant of ivy.eye_like. This method simply wraps
+the function, and so the docstring for ivy.eye_like also applies to this
+method with minimal changes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>self</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Array</span></code>) – input array from which to derive the output array shape.</p></li>
+<li><p><strong>k</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – index of the diagonal. A positive value refers to an upper diagonal, (default: <code class="docutils literal notranslate"><span class="pre">0</span></code>)
+a negative value to a lower diagonal, and 0 to the main diagonal.
+Default: <code class="docutils literal notranslate"><span class="pre">0</span></code>.</p></li>
+<li><p><strong>dtype</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Dtype</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">NativeDtype</span></code>]]) – output array data type. If <code class="docutils literal notranslate"><span class="pre">dtype</span></code> is <code class="docutils literal notranslate"><span class="pre">None</span></code>, the output array data type (default: <code class="docutils literal notranslate"><span class="pre">None</span></code>)
+must be inferred from <code class="docutils literal notranslate"><span class="pre">self</span></code>. Default: <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p></li>
+<li><p><strong>device</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Device</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">NativeDevice</span></code>]]) – device on which to place the created array. If <code class="docutils literal notranslate"><span class="pre">device</span></code> is <code class="docutils literal notranslate"><span class="pre">None</span></code>, the (default: <code class="docutils literal notranslate"><span class="pre">None</span></code>)
+output array device must be inferred from <code class="docutils literal notranslate"><span class="pre">self</span></code>. Default: <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p></li>
+<li><p><strong>out</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Array</span></code>]) – optional output array, for writing the result to. It must have a shape that (default: <code class="docutils literal notranslate"><span class="pre">None</span></code>)
+the inputs broadcast to.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Array</span></code></p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><em>ret</em> – an array having the same shape as <code class="docutils literal notranslate"><span class="pre">self</span></code> and filled with <code class="docutils literal notranslate"><span class="pre">ones</span></code>
+in diagonal <code class="docutils literal notranslate"><span class="pre">k</span></code> and <code class="docutils literal notranslate"><span class="pre">zeros</span></code> elsewhere.</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">8</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">eye_like</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+<span class="go">ivy.array([[1., 0., 0.],</span>
+<span class="go">            0., 1., 0.]])</span>
+</pre></div>
+</div>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
@@ -1467,6 +1549,58 @@ then x is truncated, if n is larger than x is zero-padded.</p></li>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="ivy.array.experimental.ArrayWithLayersExperimental.dft">
+<span class="sig-name descname"><span class="pre">dft</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inverse</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">onesided</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dft_length</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">norm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'backward'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ivy/array/experimental/layers.html#ArrayWithLayersExperimental.dft"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ivy.array.experimental.ArrayWithLayersExperimental.dft" title="Permalink to this definition"></a></dt>
+<dd><p>Computes the discrete Fourier transform of input.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>self</strong> – Input volume <em>[…,d_in,…]</em>,
+where d_in indicates the dimension that needs FFT.</p></li>
+<li><p><strong>axis</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – The axis on which to perform the DFT. By default this (default: <code class="docutils literal notranslate"><span class="pre">1</span></code>)
+value is  set to 1, which corresponds to the first dimension
+after the batch index.</p></li>
+<li><p><strong>inverse</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>) – Whether to perform the inverse discrete fourier transform. (default: <code class="docutils literal notranslate"><span class="pre">False</span></code>)
+By default this value is set to False.</p></li>
+<li><p><strong>onesided</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code>) – If onesided is True, only values for w in [0, 1, 2, …, floor(n_fft/2) + 1] (default: <code class="docutils literal notranslate"><span class="pre">False</span></code>)
+are returned because the real-to-complex Fourier transform satisfies the
+conjugate symmetry, i.e., X[m, w] = X[m,w]=X[m,n_fft-w]*. Note if the
+input or window tensors are complex, then onesided output is not possible.
+Enabling onesided with real inputs performs a Real-valued fast Fourier
+transform (RFFT). When invoked with real or complex valued input, the
+default value is False. Values can be True or False.</p></li>
+<li><p><strong>dft_length</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>, <code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>]]]) – The length of the signal.If greater than the axis dimension, (default: <code class="docutils literal notranslate"><span class="pre">None</span></code>)
+the signal will be zero-padded up to dft_length. If less than
+the axis dimension, only the first dft_length values will be
+used as the signal. It’s an optional value.</p></li>
+<li><p><strong>norm</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]) – Optional argument, “backward”, “ortho” or “forward”. Defaults to be (default: <code class="docutils literal notranslate"><span class="pre">'backward'</span></code>)
+“backward”.
+“backward” indicates no normalization.
+“ortho” indicates normalization by 1/sqrt(n).
+“forward” indicates normalization by 1/n.</p></li>
+<li><p><strong>out</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Array</span></code>]) – Optional output array, for writing the result to. It must (default: <code class="docutils literal notranslate"><span class="pre">None</span></code>)
+have a shape that the inputs broadcast to.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Array</span></code></p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><em>ret</em> – The Fourier Transform of the input vector.If onesided is False,
+the following shape is expected: [batch_idx][signal_dim1][signal_dim2]
+…[signal_dimN][2]. If axis=0 and onesided is True, the following shape
+is expected: [batch_idx][floor(signal_dim1/2)+1][signal_dim2]
+…[signal_dimN][2]. If axis=1 and onesided is True, the following
+shape is expected: [batch_idx][signal_dim1] [floor(signal_dim2/2)+1]
+…[signal_dimN][2]. If axis=N-1 and onesided is True, the following
+shape is expected: [batch_idx][signal_dim1][signal_dim2]…
+[floor(signal_dimN/2)+1][2]. The signal_dim at the specified axis
+is equal to the dft_length.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="ivy.array.experimental.ArrayWithLayersExperimental.embedding">
 <span class="sig-name descname"><span class="pre">embedding</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">indices</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">/</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_norm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ivy/array/experimental/layers.html#ArrayWithLayersExperimental.embedding"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ivy.array.experimental.ArrayWithLayersExperimental.embedding" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
@@ -1954,7 +2088,7 @@ of shape (M, N) becomes a view of shape (M, N, 1).</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="ivy.array.experimental.ArrayWithManipulationExperimental.dsplit">
-<span class="sig-name descname"><span class="pre">dsplit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">indices_or_sections</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">/</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ivy/array/experimental/manipulation.html#ArrayWithManipulationExperimental.dsplit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ivy.array.experimental.ArrayWithManipulationExperimental.dsplit" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">dsplit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">indices_or_sections</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">/</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ivy/array/experimental/manipulation.html#ArrayWithManipulationExperimental.dsplit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ivy.array.experimental.ArrayWithManipulationExperimental.dsplit" title="Permalink to this definition"></a></dt>
 <dd><p>ivy.Array instance method variant of ivy.dsplit. This method simply
 wraps the function, and so the docstring for ivy.dsplit also applies
 to this method with minimal changes.</p>
@@ -1962,18 +2096,17 @@ to this method with minimal changes.</p>
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>self</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Array</span></code>) – Input array.</p></li>
-<li><p><strong>indices_or_sections</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>, <code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>]]) – If indices_or_sections is an integer n, the array is split into n sections.
+<li><p><strong>indices_or_sections</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>, <code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>, <code class="xref py py-data docutils literal notranslate"><span class="pre">...</span></code>]]) – If indices_or_sections is an integer n, the array is split into n sections.
 If the array is divisible by n along the 3rd axis, each section will be of
 equal size. If input is not divisible by n, the sizes of the first
 int(ary.size(0) % n) sections will have size int(ary.size(0) / n) + 1, and
 the rest will have size int(ary.size(0) / n).
 If indices_or_sections is a tuple of ints, then input is split at each of
 the indices in the tuple.</p></li>
-<li><p><strong>out</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Array</span></code>]) – Optional output, for writing the result to. (default: <code class="docutils literal notranslate"><span class="pre">None</span></code>)</p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type</dt>
-<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Array</span></code></p>
+<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Array</span></code>]</p>
 </dd>
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p><em>ret</em> – input array split along the 3rd axis.</p>
@@ -1995,7 +2128,7 @@ the indices in the tuple.</p></li>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="ivy.array.experimental.ArrayWithManipulationExperimental.dstack">
-<span class="sig-name descname"><span class="pre">dstack</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arrays</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ivy/array/experimental/manipulation.html#ArrayWithManipulationExperimental.dstack"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ivy.array.experimental.ArrayWithManipulationExperimental.dstack" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">dstack</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arrays</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">/</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ivy/array/experimental/manipulation.html#ArrayWithManipulationExperimental.dstack"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ivy.array.experimental.ArrayWithManipulationExperimental.dstack" title="Permalink to this definition"></a></dt>
 <dd><p>ivy.Array instance method variant of ivy.dstack. This method simply
 wraps the function, and so the docstring for ivy.dstack also applies
 to this method with minimal changes.</p>
@@ -2011,6 +2144,23 @@ to this method with minimal changes.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Array</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ivy.array.experimental.ArrayWithManipulationExperimental.expand">
+<span class="sig-name descname"><span class="pre">expand</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shape</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">/</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ivy/array/experimental/manipulation.html#ArrayWithManipulationExperimental.expand"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ivy.array.experimental.ArrayWithManipulationExperimental.expand" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>shape</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Shape</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">NativeShape</span></code>]) – </p></li>
+<li><p><strong>device</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Device</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">NativeDevice</span></code>]]) – (default: <code class="docutils literal notranslate"><span class="pre">None</span></code>)</p></li>
+<li><p><strong>out</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Array</span></code>]) – (default: <code class="docutils literal notranslate"><span class="pre">None</span></code>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Array</span></code></p>
 </dd>
 </dl>
 </dd></dl>
@@ -2210,7 +2360,7 @@ This is a scalar if both x1 and x2 are scalars.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="ivy.array.experimental.ArrayWithManipulationExperimental.hsplit">
-<span class="sig-name descname"><span class="pre">hsplit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">indices_or_sections</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">/</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ivy/array/experimental/manipulation.html#ArrayWithManipulationExperimental.hsplit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ivy.array.experimental.ArrayWithManipulationExperimental.hsplit" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">hsplit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">indices_or_sections</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">/</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ivy/array/experimental/manipulation.html#ArrayWithManipulationExperimental.hsplit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ivy.array.experimental.ArrayWithManipulationExperimental.hsplit" title="Permalink to this definition"></a></dt>
 <dd><p>ivy.Array instance method variant of ivy.hsplit. This method simply
 wraps the function, and so the docstring for ivy.hsplit also applies
 to this method with minimal changes.</p>
@@ -2218,21 +2368,17 @@ to this method with minimal changes.</p>
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>self</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Array</span></code>) – Input array.</p></li>
-<li><p><strong>indices_or_sections</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>, <code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>]]) – If indices_or_sections is an integer n, the array is split into n sections.
-If the array is divisible by n horizontally, each section will be of
-equal size. If input is not divisible by n, the sizes of the first
-int(ary.size(0) % n) sections will have size int(ary.size(0) / n) + 1, and
-the rest will have size int(ary.size(0) / n).
+<li><p><strong>indices_or_sections</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>, <code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>, <code class="xref py py-data docutils literal notranslate"><span class="pre">...</span></code>]]) – If indices_or_sections is an integer n, the array is split into n
+equal sections, provided that n must be a divisor of the split axis.
 If indices_or_sections is a tuple of ints, then input is split at each of
 the indices in the tuple.</p></li>
-<li><p><strong>out</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Array</span></code>]) – Optional output, for writing the result to. (default: <code class="docutils literal notranslate"><span class="pre">None</span></code>)</p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type</dt>
-<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Array</span></code></p>
+<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Array</span></code>]</p>
 </dd>
 <dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p><em>ret</em> – input array split horizontally.</p>
+<dd class="field-odd"><p><em>ret</em> – list of arrays split horizontally from input array.</p>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
@@ -2257,7 +2403,7 @@ the indices in the tuple.</p></li>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="ivy.array.experimental.ArrayWithManipulationExperimental.hstack">
-<span class="sig-name descname"><span class="pre">hstack</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arrays</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ivy/array/experimental/manipulation.html#ArrayWithManipulationExperimental.hstack"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ivy.array.experimental.ArrayWithManipulationExperimental.hstack" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">hstack</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arrays</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">/</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ivy/array/experimental/manipulation.html#ArrayWithManipulationExperimental.hstack"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ivy.array.experimental.ArrayWithManipulationExperimental.hstack" title="Permalink to this definition"></a></dt>
 <dd><p>ivy.Array instance method variant of ivy.hstack. This method simply
 wraps the function, and so the docstring for ivy.hstack also applies
 to this method with minimal changes.</p>
@@ -2464,7 +2610,7 @@ with a shape that the returned tuple broadcast to.</p></li>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="ivy.array.experimental.ArrayWithManipulationExperimental.vsplit">
-<span class="sig-name descname"><span class="pre">vsplit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">indices_or_sections</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">/</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ivy/array/experimental/manipulation.html#ArrayWithManipulationExperimental.vsplit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ivy.array.experimental.ArrayWithManipulationExperimental.vsplit" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">vsplit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">indices_or_sections</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">/</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ivy/array/experimental/manipulation.html#ArrayWithManipulationExperimental.vsplit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ivy.array.experimental.ArrayWithManipulationExperimental.vsplit" title="Permalink to this definition"></a></dt>
 <dd><p>ivy.Array instance method variant of ivy.vsplit. This method simply
 wraps the function, and so the docstring for ivy.vsplit also applies
 to this method with minimal changes.</p>
@@ -2479,11 +2625,10 @@ int(ary.size(0) % n) sections will have size int(ary.size(0) / n) + 1, and
 the rest will have size int(ary.size(0) / n).
 If indices_or_sections is a tuple of ints, then input is split at each of
 the indices in the tuple.</p></li>
-<li><p><strong>out</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Array</span></code>]) – Optional output, for writing the result to. (default: <code class="docutils literal notranslate"><span class="pre">None</span></code>)</p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type</dt>
-<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Array</span></code></p>
+<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Array</span></code>]</p>
 </dd>
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p><em>ret</em> – input array split along the 3rd axis.</p>
@@ -2504,7 +2649,7 @@ the indices in the tuple.</p></li>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="ivy.array.experimental.ArrayWithManipulationExperimental.vstack">
-<span class="sig-name descname"><span class="pre">vstack</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arrays</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ivy/array/experimental/manipulation.html#ArrayWithManipulationExperimental.vstack"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ivy.array.experimental.ArrayWithManipulationExperimental.vstack" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">vstack</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arrays</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">/</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ivy/array/experimental/manipulation.html#ArrayWithManipulationExperimental.vstack"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ivy.array.experimental.ArrayWithManipulationExperimental.vstack" title="Permalink to this definition"></a></dt>
 <dd><p>ivy.Array instance method variant of ivy.vstack. This method simply
 wraps the function, and so the docstring for ivy.vstack also applies
 to this method with minimal changes.</p>
@@ -2530,6 +2675,60 @@ to this method with minimal changes.</p>
 <dt class="sig sig-object py" id="ivy.array.experimental.ArrayWithNormsExperimental">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ivy.array.experimental.</span></span><span class="sig-name descname"><span class="pre">ArrayWithNormsExperimental</span></span><a class="reference internal" href="../../_modules/ivy/array/experimental/norms.html#ArrayWithNormsExperimental"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ivy.array.experimental.ArrayWithNormsExperimental" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="ivy.array.experimental.ArrayWithNormsExperimental.instance_norm">
+<span class="sig-name descname"><span class="pre">instance_norm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bias</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-05</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">momentum</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'NCHW'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">running_mean</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">running_stddev</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">affine</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">track_running_stats</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ivy/array/experimental/norms.html#ArrayWithNormsExperimental.instance_norm"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ivy.array.experimental.ArrayWithNormsExperimental.instance_norm" title="Permalink to this definition"></a></dt>
+<dd><p>Applies Instance Normalization over a 4D input along C dimension.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> – Input array.</p></li>
+<li><p><strong>scale</strong> – Scale parameter for the normalization.</p></li>
+<li><p><strong>bias</strong> – Bias parameter for the normalization.</p></li>
+<li><p><strong>eps</strong> – Small constant to avoid division by zero.</p></li>
+<li><p><strong>momentum</strong> – Momentum parameter for running statistics</p></li>
+<li><p><strong>data_format</strong> – Format of the input data, either ‘NCHW’ or ‘NHWC’.</p></li>
+<li><p><strong>running_mean</strong> – The running mean of the input array.</p></li>
+<li><p><strong>running_stddev</strong> – The running standard deviation of the input array.</p></li>
+<li><p><strong>affine</strong> – Whether to use affine transformation for the output.</p></li>
+<li><p><strong>track_running_stats</strong> – Whether to track the running statistics of the input array.</p></li>
+<li><p><strong>out</strong> – Optional output array, for writing the result to. It must
+have a shape that the inputs broadcast to.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><em>ret</em> – The normalized array.
+OR
+The normalized array, Running mean, Running stddev</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<p>With <code class="xref py py-class docutils literal notranslate"><span class="pre">track_running_stats=False</span></code>:
+ret : The normalized array.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ivy</span><span class="o">.</span><span class="n">instance_norm</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="p">[</span><span class="mf">2.</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span> <span class="n">bias</span><span class="o">=</span><span class="p">[</span><span class="mf">2.</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span>
+<span class="gp">... </span>                  <span class="n">data_format</span><span class="o">=</span><span class="s1">&#39;NCHW&#39;</span><span class="p">,</span> <span class="n">affine</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="gp">... </span>                  <span class="n">track_running_stats</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="go">ivy.array([[[[4.82836342],[0.58581817],[0.58581817]],</span>
+<span class="go">        [[0.29290909],[2.41418171],[0.29290909]],</span>
+<span class="go">        [[0.14645454],[0.14645454],[1.20709085]]]])</span>
+</pre></div>
+</div>
+<p>With <code class="xref py py-class docutils literal notranslate"><span class="pre">track_running_stats=True</span></code>:
+ret : The normalized array, Running mean, Running stddev.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ivy</span><span class="o">.</span><span class="n">instance_norm</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="p">[</span><span class="mf">2.</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span> <span class="n">bias</span><span class="o">=</span><span class="p">[</span><span class="mf">2.</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span>
+<span class="gp">... </span>                  <span class="n">data_format</span><span class="o">=</span><span class="s1">&#39;NCHW&#39;</span><span class="p">,</span><span class="n">affine</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="gp">... </span>                  <span class="n">track_running_stats</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="go">(ivy.array([[[[4.82836342],[0.58581817],[0.58581817]],</span>
+<span class="go">        [[0.29290909],[2.41418171],[0.29290909]],</span>
+<span class="go">        [[0.14645454],[0.14645454],[1.20709085]]]]),</span>
+<span class="go"> ivy.array([[[[0.30000001]],[[0.30000001]],[[0.30000001]]]]),</span>
+<span class="go"> ivy.array([[[[0.52426404]],[[0.52426404]],[[0.52426404]]]]))</span>
+</pre></div>
+</div>
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="ivy.array.experimental.ArrayWithNormsExperimental.l2_normalize">
 <span class="sig-name descname"><span class="pre">l2_normalize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ivy/array/experimental/norms.html#ArrayWithNormsExperimental.l2_normalize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ivy.array.experimental.ArrayWithNormsExperimental.l2_normalize" title="Permalink to this definition"></a></dt>
@@ -2563,6 +2762,36 @@ shape that the inputs broadcast to.</p></li>
 <dt class="sig sig-object py" id="ivy.array.experimental.ArrayWithRandomExperimental">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ivy.array.experimental.</span></span><span class="sig-name descname"><span class="pre">ArrayWithRandomExperimental</span></span><a class="reference internal" href="../../_modules/ivy/array/experimental/random.html#ArrayWithRandomExperimental"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ivy.array.experimental.ArrayWithRandomExperimental" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="ivy.array.experimental.ArrayWithRandomExperimental.bernoulli">
+<span class="sig-name descname"><span class="pre">bernoulli</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logits</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shape</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ivy/array/experimental/random.html#ArrayWithRandomExperimental.bernoulli"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ivy.array.experimental.ArrayWithRandomExperimental.bernoulli" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>self</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Array</span></code>) – An N-D Array representing the probability of a 1 event.
+Each entry in the Array parameterizes an independent Bernoulli
+distribution. Only one of logits or probs should be passed in</p></li>
+<li><p><strong>logits</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">Array</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">NativeArray</span></code>]]) – An N-D Array representing the log-odds of a 1 event. (default: <code class="docutils literal notranslate"><span class="pre">None</span></code>)
+Each entry in the Array parameterizes an independent Bernoulli
+distribution where the probability of an event is sigmoid
+(logits). Only one of logits or probs should be passed in.</p></li>
+<li><p><strong>shape</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Shape</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">NativeShape</span></code>]]) – If the given shape is, e.g ‘(m, n, k)’, then ‘m * n * k’ samples are drawn. (default: <code class="docutils literal notranslate"><span class="pre">None</span></code>)
+(Default value = ‘None’, where ‘ivy.shape(logits)’ samples are drawn)</p></li>
+<li><p><strong>device</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Device</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">NativeDevice</span></code>]]) – device on which to create the array ‘cuda:0’, ‘cuda:1’, ‘cpu’ etc. (default: <code class="docutils literal notranslate"><span class="pre">None</span></code>)
+(Default value = None).</p></li>
+<li><p><strong>dtype</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Dtype</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">NativeDtype</span></code>]]) – output array data type. If <code class="docutils literal notranslate"><span class="pre">dtype</span></code> is <code class="docutils literal notranslate"><span class="pre">None</span></code>, the output array data (default: <code class="docutils literal notranslate"><span class="pre">None</span></code>)
+type will be the default floating-point data type. Default <code class="docutils literal notranslate"><span class="pre">None</span></code></p></li>
+<li><p><strong>seed</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>]) – A python integer. Used to create a random seed distribution (default: <code class="docutils literal notranslate"><span class="pre">None</span></code>)</p></li>
+<li><p><strong>out</strong> (<code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Array</span></code>]) – optional output array, for writing the result to. It must (default: <code class="docutils literal notranslate"><span class="pre">None</span></code>)
+have a shape that the inputs broadcast to.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><em>ret</em> – Drawn samples from the Bernoulli distribution</p>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="ivy.array.experimental.ArrayWithRandomExperimental.beta">
 <span class="sig-name descname"><span class="pre">beta</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">alpha</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">beta</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">/</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ivy/array/experimental/random.html#ArrayWithRandomExperimental.beta"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ivy.array.experimental.ArrayWithRandomExperimental.beta" title="Permalink to this definition"></a></dt>

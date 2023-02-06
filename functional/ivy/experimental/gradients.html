@@ -97,6 +97,17 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../nested_array/nested_array.html">Nested array</a></li>
 </ul>
+<p class="caption" role="heading"><span class="caption-text">Testing</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../testing/assertions.html">Assertions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../testing/available_frameworks.html">Available frameworks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../testing/function_testing.html">Function testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../testing/globals.html">Globals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../testing/hypothesis_helpers.html">Hypothesis helpers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../testing/structs.html">Structs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../testing/test_parameter_flags.html">Test parameter flags</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../testing/testing_helpers.html">Testing helpers</a></li>
+</ul>
 <p class="caption" role="heading"><span class="caption-text">Docs</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../../ivy"">Ivy</a></li>
@@ -136,6 +147,24 @@
              
   <section id="module-ivy.functional.ivy.experimental.gradients">
 <span id="gradients"></span><h1>Gradients<a class="headerlink" href="#module-ivy.functional.ivy.experimental.gradients" title="Permalink to this heading"></a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="ivy.functional.ivy.experimental.gradients.bind_custom_gradient_function">
+<span class="sig-prename descclassname">ivy.</span></span><span class="sig-name descname"><span class="pre">bind_custom_gradient_function</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">custom_grad_func</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/ivy/functional/ivy/experimental/gradients.html#bind_custom_gradient_function"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ivy.functional.ivy.experimental.gradients.bind_custom_gradient_function" title="Permalink to this definition"></a></dt>
+<dd><p>Bind a custom gradient function to a function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>func</strong> – Function for which we compute the gradients of the output with respect to.</p></li>
+<li><p><strong>custom_grad_func</strong> – Custom gradient function. Should accept a tuple containing the (output, inputs)
+and the upstream gradients w.r.t previous operations.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><em>ret</em> – the function</p>
+</dd>
+</dl>
+</dd></dl>
+
 <div class="toctree-wrapper compound">
 </div>
 </section>

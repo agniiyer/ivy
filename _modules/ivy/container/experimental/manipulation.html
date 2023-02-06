@@ -96,6 +96,17 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../../nested_array/nested_array.html">Nested array</a></li>
 </ul>
+<p class="caption" role="heading"><span class="caption-text">Testing</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../testing/assertions.html">Assertions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../testing/available_frameworks.html">Available frameworks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../testing/function_testing.html">Function testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../testing/globals.html">Globals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../testing/hypothesis_helpers.html">Hypothesis helpers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../testing/structs.html">Structs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../testing/test_parameter_flags.html">Test parameter flags</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../testing/testing_helpers.html">Testing helpers</a></li>
+</ul>
 <p class="caption" role="heading"><span class="caption-text">Docs</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../../../ivy"">Ivy</a></li>
@@ -1349,7 +1360,6 @@
         <span class="n">to_apply</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
         <span class="n">prune_unapplied</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
         <span class="n">map_sequences</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-        <span class="n">out</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        ivy.Container static method variant of ivy.vsplit. This method simply wraps</span>
@@ -1368,8 +1378,6 @@
 <span class="sd">            the rest will have size int(ary.size(0) / n).</span>
 <span class="sd">            If indices_or_sections is a tuple of ints, then input is split at each of</span>
 <span class="sd">            the indices in the tuple.</span>
-<span class="sd">        out</span>
-<span class="sd">            optional output container, for writing the result to.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -1403,20 +1411,17 @@
         <span class="k">return</span> <span class="n">ContainerBase</span><span class="o">.</span><span class="n">cont_multi_map_in_function</span><span class="p">(</span>
             <span class="s2">&quot;vsplit&quot;</span><span class="p">,</span>
             <span class="n">ary</span><span class="p">,</span>
-            <span class="n">indices_or_sections</span><span class="o">=</span><span class="n">indices_or_sections</span><span class="p">,</span>
+            <span class="n">indices_or_sections</span><span class="p">,</span>
             <span class="n">key_chains</span><span class="o">=</span><span class="n">key_chains</span><span class="p">,</span>
             <span class="n">to_apply</span><span class="o">=</span><span class="n">to_apply</span><span class="p">,</span>
             <span class="n">prune_unapplied</span><span class="o">=</span><span class="n">prune_unapplied</span><span class="p">,</span>
             <span class="n">map_sequences</span><span class="o">=</span><span class="n">map_sequences</span><span class="p">,</span>
-            <span class="n">out</span><span class="o">=</span><span class="n">out</span><span class="p">,</span>
         <span class="p">)</span></div>
 
 <div class="viewcode-block" id="ContainerWithManipulationExperimental.vsplit"><a class="viewcode-back" href="../../../../data_classes/container/experimental.html#ivy.container.experimental.ContainerWithManipulationExperimental.vsplit">[docs]</a>    <span class="k">def</span> <span class="nf">vsplit</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">:</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">,</span>
         <span class="n">indices_or_sections</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">]],</span>
         <span class="o">/</span><span class="p">,</span>
-        <span class="o">*</span><span class="p">,</span>
-        <span class="n">out</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;ivy.Container instance method variant of ivy.vsplit. This method simply</span>
 <span class="sd">        wraps the function, and so the docstring for ivy.vsplit also applies to this</span>
@@ -1433,9 +1438,6 @@
 <span class="sd">            int(ary.size(0) % n) sections will have size int(ary.size(0) / n) + 1, and</span>
 <span class="sd">            the rest will have size int(ary.size(0) / n).</span>
 <span class="sd">            If indices_or_sections is a tuple of ints, then input is split at each of</span>
-<span class="sd">            the indices in the tuple.</span>
-<span class="sd">        out</span>
-<span class="sd">            optional output container, for writing the result to.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -1467,22 +1469,19 @@
 <span class="sd">                ivy.array([[ 8.,  9., 10., 11.], [12., 13., 14., 15.]])]</span>
 <span class="sd">        }</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">static_vsplit</span><span class="p">(</span>
-            <span class="bp">self</span><span class="p">,</span> <span class="n">indices_or_sections</span><span class="o">=</span><span class="n">indices_or_sections</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">out</span>
-        <span class="p">)</span></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">static_vsplit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">indices_or_sections</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="ContainerWithManipulationExperimental.static_dsplit"><a class="viewcode-back" href="../../../../data_classes/container/experimental.html#ivy.container.experimental.ContainerWithManipulationExperimental.static_dsplit">[docs]</a>    <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">static_dsplit</span><span class="p">(</span>
         <span class="n">ary</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">],</span>
-        <span class="n">indices_or_sections</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">]],</span>
+        <span class="n">indices_or_sections</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="o">...</span><span class="p">]],</span>
         <span class="o">/</span><span class="p">,</span>
         <span class="o">*</span><span class="p">,</span>
         <span class="n">key_chains</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">to_apply</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
         <span class="n">prune_unapplied</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
         <span class="n">map_sequences</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-        <span class="n">out</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">:</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        ivy.Container static method variant of ivy.dsplit. This method simply wraps</span>
 <span class="sd">        the function, and so the docstring for ivy.dsplit also applies to this method</span>
@@ -1500,56 +1499,64 @@
 <span class="sd">            the rest will have size int(ary.size(0) / n).</span>
 <span class="sd">            If indices_or_sections is a tuple of ints, then input is split at each of</span>
 <span class="sd">            the indices in the tuple.</span>
-<span class="sd">        out</span>
-<span class="sd">            optional output container, for writing the result to.</span>
+<span class="sd">        key_chains</span>
+<span class="sd">            The key-chains to apply or not apply the method to. Default is None.</span>
+<span class="sd">        to_apply</span>
+<span class="sd">            If True, the method will be applied to key_chains, otherwise key_chains</span>
+<span class="sd">            will be skipped. Default is True.</span>
+<span class="sd">        prune_unapplied</span>
+<span class="sd">            Whether to prune key_chains for which the function was not applied.</span>
+<span class="sd">            Default is False.</span>
+<span class="sd">        map_sequences</span>
+<span class="sd">            Whether to also map method to sequences (lists, tuples). Default is False.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">        ret</span>
-<span class="sd">            container including input arrays split along the 3rd axis.</span>
+<span class="sd">            list of containers holding arrays split from the input at the 3rd axis</span>
 
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
 <span class="sd">        &gt;&gt;&gt; ary = ivy.Container(</span>
-<span class="sd">            a = ivy.ivy.array(</span>
+<span class="sd">            a = ivy.array(</span>
 <span class="sd">                    [[[0.,  1.],</span>
 <span class="sd">                      [2.,  3.]],</span>
 <span class="sd">                      [[4.,  5.],</span>
 <span class="sd">                      [6.,  7.]]]</span>
 <span class="sd">                ),</span>
 <span class="sd">            b=ivy.array(</span>
-<span class="sd">                    [[ 0.,  1.,  2.,  3.],</span>
-<span class="sd">                     [ 4.,  5.,  6.,  7.],</span>
-<span class="sd">                     [ 8.,  9., 10., 11.],</span>
-<span class="sd">                     [12., 13., 14., 15.]])</span>
+<span class="sd">                    [[[ 0.,  1.,  2.,  3.],</span>
+<span class="sd">                      [ 4.,  5.,  6.,  7.],</span>
+<span class="sd">                      [ 8.,  9., 10., 11.],</span>
+<span class="sd">                      [12., 13., 14., 15.]]]</span>
 <span class="sd">                )</span>
 <span class="sd">            )</span>
 <span class="sd">        &gt;&gt;&gt; ivy.Container.static_dsplit(ary, 2)</span>
-<span class="sd">        {</span>
-<span class="sd">            a: [ivy.array([[[0., 1.], [2., 3.]]]),</span>
-<span class="sd">                ivy.array([[[4., 5.], [6., 7.]]])],</span>
-<span class="sd">            b: [ivy.array([[0., 1., 2., 3.], [4., 5., 6., 7.]]),</span>
-<span class="sd">                ivy.array([[ 8.,  9., 10., 11.], [12., 13., 14., 15.]])]</span>
-<span class="sd">        }</span>
+<span class="sd">        [{</span>
+<span class="sd">            a: ivy.array([[[0.], [2.]],</span>
+<span class="sd">                          [[4.], [6.]]]),</span>
+<span class="sd">            b: ivy.array([[[0., 1.], [4., 5.], [8., 9.], [12., 13.]]])</span>
+<span class="sd">        }, {</span>
+<span class="sd">            a: ivy.array([[[1.], [3.]],</span>
+<span class="sd">                          [[5.], [7.]]]),</span>
+<span class="sd">            b: ivy.array([[[2., 3.], [6., 7.], [10., 11.], [14., 15.]]])</span>
+<span class="sd">        }]</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">ContainerBase</span><span class="o">.</span><span class="n">cont_multi_map_in_function</span><span class="p">(</span>
             <span class="s2">&quot;dsplit&quot;</span><span class="p">,</span>
             <span class="n">ary</span><span class="p">,</span>
-            <span class="n">indices_or_sections</span><span class="o">=</span><span class="n">indices_or_sections</span><span class="p">,</span>
+            <span class="n">indices_or_sections</span><span class="p">,</span>
             <span class="n">key_chains</span><span class="o">=</span><span class="n">key_chains</span><span class="p">,</span>
             <span class="n">to_apply</span><span class="o">=</span><span class="n">to_apply</span><span class="p">,</span>
             <span class="n">prune_unapplied</span><span class="o">=</span><span class="n">prune_unapplied</span><span class="p">,</span>
             <span class="n">map_sequences</span><span class="o">=</span><span class="n">map_sequences</span><span class="p">,</span>
-            <span class="n">out</span><span class="o">=</span><span class="n">out</span><span class="p">,</span>
         <span class="p">)</span></div>
 
 <div class="viewcode-block" id="ContainerWithManipulationExperimental.dsplit"><a class="viewcode-back" href="../../../../data_classes/container/experimental.html#ivy.container.experimental.ContainerWithManipulationExperimental.dsplit">[docs]</a>    <span class="k">def</span> <span class="nf">dsplit</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">:</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">,</span>
-        <span class="n">indices_or_sections</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">]],</span>
+        <span class="n">indices_or_sections</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="o">...</span><span class="p">]],</span>
         <span class="o">/</span><span class="p">,</span>
-        <span class="o">*</span><span class="p">,</span>
-        <span class="n">out</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">:</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;ivy.Container instance method variant of ivy.dsplit. This method simply</span>
 <span class="sd">        wraps the function, and so the docstring for ivy.dsplit also applies to this</span>
 <span class="sd">        method with minimal changes.</span>
@@ -1566,42 +1573,40 @@
 <span class="sd">            the rest will have size int(ary.size(0) / n).</span>
 <span class="sd">            If indices_or_sections is a tuple of ints, then input is split at each of</span>
 <span class="sd">            the indices in the tuple.</span>
-<span class="sd">        out</span>
-<span class="sd">            optional output container, for writing the result to.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">        ret</span>
-<span class="sd">            container including arrays with the modified Bessel</span>
-<span class="sd">            function evaluated at each of the elements of x.</span>
+<span class="sd">            list of containers holding arrays split from the input at the 3rd axis</span>
 
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
 <span class="sd">        &gt;&gt;&gt; ary = ivy.Container(</span>
-<span class="sd">            a = ivy.ivy.array(</span>
+<span class="sd">            a = ivy.array(</span>
 <span class="sd">                    [[[0.,  1.],</span>
 <span class="sd">                      [2.,  3.]],</span>
 <span class="sd">                      [[4.,  5.],</span>
 <span class="sd">                      [6.,  7.]]]</span>
 <span class="sd">                ),</span>
 <span class="sd">            b=ivy.array(</span>
-<span class="sd">                    [[ 0.,  1.,  2.,  3.],</span>
-<span class="sd">                     [ 4.,  5.,  6.,  7.],</span>
-<span class="sd">                     [ 8.,  9., 10., 11.],</span>
-<span class="sd">                     [12., 13., 14., 15.]])</span>
+<span class="sd">                    [[[ 0.,  1.,  2.,  3.],</span>
+<span class="sd">                      [ 4.,  5.,  6.,  7.],</span>
+<span class="sd">                      [ 8.,  9., 10., 11.],</span>
+<span class="sd">                      [12., 13., 14., 15.]]]</span>
 <span class="sd">                )</span>
 <span class="sd">            )</span>
 <span class="sd">        &gt;&gt;&gt; ary.dsplit(2)</span>
-<span class="sd">        {</span>
-<span class="sd">            a: [ivy.array([[[0., 1.], [2., 3.]]]),</span>
-<span class="sd">                ivy.array([[[4., 5.], [6., 7.]]])],</span>
-<span class="sd">            b: [ivy.array([[0., 1., 2., 3.], [4., 5., 6., 7.]]),</span>
-<span class="sd">                ivy.array([[ 8.,  9., 10., 11.], [12., 13., 14., 15.]])]</span>
-<span class="sd">        }</span>
+<span class="sd">        [{</span>
+<span class="sd">            a: ivy.array([[[0.], [2.]],</span>
+<span class="sd">                          [[4.], [6.]]]),</span>
+<span class="sd">            b: ivy.array([[[0., 1.], [4., 5.], [8., 9.], [12., 13.]]])</span>
+<span class="sd">        }, {</span>
+<span class="sd">            a: ivy.array([[[1.], [3.]],</span>
+<span class="sd">                          [[5.], [7.]]]),</span>
+<span class="sd">            b: ivy.array([[[2., 3.], [6., 7.], [10., 11.], [14., 15.]]])</span>
+<span class="sd">        }]</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">static_dsplit</span><span class="p">(</span>
-            <span class="bp">self</span><span class="p">,</span> <span class="n">indices_or_sections</span><span class="o">=</span><span class="n">indices_or_sections</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">out</span>
-        <span class="p">)</span></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">static_dsplit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">indices_or_sections</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="ContainerWithManipulationExperimental.static_atleast_1d"><a class="viewcode-back" href="../../../../data_classes/container/experimental.html#ivy.container.experimental.ContainerWithManipulationExperimental.static_atleast_1d">[docs]</a>    <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">static_atleast_1d</span><span class="p">(</span>
@@ -2188,15 +2193,14 @@
 <div class="viewcode-block" id="ContainerWithManipulationExperimental.static_hsplit"><a class="viewcode-back" href="../../../../data_classes/container/experimental.html#ivy.container.experimental.ContainerWithManipulationExperimental.static_hsplit">[docs]</a>    <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">static_hsplit</span><span class="p">(</span>
         <span class="n">ary</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">],</span>
-        <span class="n">indices_or_sections</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">]],</span>
+        <span class="n">indices_or_sections</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="o">...</span><span class="p">]],</span>
         <span class="o">/</span><span class="p">,</span>
         <span class="o">*</span><span class="p">,</span>
         <span class="n">key_chains</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">to_apply</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
         <span class="n">prune_unapplied</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
         <span class="n">map_sequences</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-        <span class="n">out</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">:</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        ivy.Container static method variant of ivy.hsplit. This method simply wraps</span>
 <span class="sd">        the function, and so the docstring for ivy.hsplit also applies to this method</span>
@@ -2207,54 +2211,53 @@
 <span class="sd">        ary</span>
 <span class="sd">            the container with array inputs.</span>
 <span class="sd">        indices_or_sections</span>
-<span class="sd">            If indices_or_sections is an integer n, the array is split into n sections.</span>
-<span class="sd">            If the array is divisible by n horizontally, each section will be of equal</span>
-<span class="sd">            size. If input is not divisible by n, the sizes of the first</span>
-<span class="sd">            int(ary.size(0) % n) sections will have size int(ary.size(0) / n) + 1, and</span>
-<span class="sd">            the rest will have size int(ary.size(0) / n).</span>
+<span class="sd">            If indices_or_sections is an integer n, the array is split into n</span>
+<span class="sd">            equal sections, provided that n must be a divisor of the split axis.</span>
 <span class="sd">            If indices_or_sections is a tuple of ints, then input is split at each of</span>
 <span class="sd">            the indices in the tuple.</span>
-<span class="sd">        out</span>
-<span class="sd">            optional output container, for writing the result to.</span>
+<span class="sd">        key_chains</span>
+<span class="sd">            The keychains to apply or not apply the method to. Default is ``None``.</span>
+<span class="sd">        to_apply</span>
+<span class="sd">            If True, the method will be applied to key_chains, otherwise key_chains</span>
+<span class="sd">            will be skipped. Default is ``True``.</span>
+<span class="sd">        prune_unapplied</span>
+<span class="sd">            Whether to prune key_chains for which the function was not applied.</span>
+<span class="sd">            Default is ``False``.</span>
+<span class="sd">        map_sequences</span>
+<span class="sd">            Whether to also map method to sequences (lists, tuples).</span>
+<span class="sd">            Default is ``False``.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">        ret</span>
-<span class="sd">            container including input arrays split horizontally.</span>
+<span class="sd">            list of containers split horizontally from input array.</span>
 
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
 <span class="sd">        &gt;&gt;&gt; ary = ivy.Container(</span>
-<span class="sd">            a = ivy.ivy.array(</span>
+<span class="sd">            a = ivy.array(</span>
 <span class="sd">                    [[[0.,  1.],</span>
 <span class="sd">                      [2.,  3.]],</span>
 <span class="sd">                      [[4.,  5.],</span>
 <span class="sd">                      [6.,  7.]]]</span>
 <span class="sd">                ),</span>
 <span class="sd">            b=ivy.array(</span>
-<span class="sd">                    [[ 0.,  1.,  2.,  3.],</span>
-<span class="sd">                     [ 4.,  5.,  6.,  7.],</span>
-<span class="sd">                     [ 8.,  9., 10., 11.],</span>
-<span class="sd">                     [12., 13., 14., 15.]])</span>
+<span class="sd">                    [0.,  1.,  2.,  3.,</span>
+<span class="sd">                     4.,  5.,  6.,  7.,</span>
+<span class="sd">                     8.,  9.,  10., 11.,</span>
+<span class="sd">                     12., 13., 14., 15.]</span>
 <span class="sd">                )</span>
 <span class="sd">            )</span>
-<span class="sd">        &gt;&gt;&gt; ivy.Container.static_vsplit(ary, 2)</span>
-<span class="sd">        {</span>
-<span class="sd">            a: ivy.ivy.array(</span>
-<span class="sd">                    [[[0.,  1.],</span>
-<span class="sd">                      [2.,  3.]],</span>
-<span class="sd">                      [[4.,  5.],</span>
-<span class="sd">                      [6.,  7.]]]</span>
-<span class="sd">                ),</span>
-<span class="sd">            b: [ivy.array([[ 0.,  1.],</span>
-<span class="sd">                        [ 4.,  5.],</span>
-<span class="sd">                        [ 8.,  9.],</span>
-<span class="sd">                        [12., 13.]]),</span>
-<span class="sd">                ivy.array([[ 2.,  3.],</span>
-<span class="sd">                        [ 6.,  7.],</span>
-<span class="sd">                        [10., 11.],</span>
-<span class="sd">                        [14., 15.]])</span>
-<span class="sd">        }</span>
+<span class="sd">        &gt;&gt;&gt; ivy.Container.static_hsplit(ary, 2)</span>
+<span class="sd">        [{</span>
+<span class="sd">            a: ivy.array([[[0., 1.]],</span>
+<span class="sd">                          [[4., 5.]]]),</span>
+<span class="sd">            b: ivy.array([0., 1., 2., 3., 4., 5., 6., 7.])</span>
+<span class="sd">        }, {</span>
+<span class="sd">            a: ivy.array([[[2., 3.]],</span>
+<span class="sd">                          [[6., 7.]]]),</span>
+<span class="sd">            b: ivy.array([8., 9., 10., 11., 12., 13., 14., 15.])</span>
+<span class="sd">        }]</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">ContainerBase</span><span class="o">.</span><span class="n">cont_multi_map_in_function</span><span class="p">(</span>
             <span class="s2">&quot;hsplit&quot;</span><span class="p">,</span>
@@ -2264,16 +2267,13 @@
             <span class="n">to_apply</span><span class="o">=</span><span class="n">to_apply</span><span class="p">,</span>
             <span class="n">prune_unapplied</span><span class="o">=</span><span class="n">prune_unapplied</span><span class="p">,</span>
             <span class="n">map_sequences</span><span class="o">=</span><span class="n">map_sequences</span><span class="p">,</span>
-            <span class="n">out</span><span class="o">=</span><span class="n">out</span><span class="p">,</span>
         <span class="p">)</span></div>
 
 <div class="viewcode-block" id="ContainerWithManipulationExperimental.hsplit"><a class="viewcode-back" href="../../../../data_classes/container/experimental.html#ivy.container.experimental.ContainerWithManipulationExperimental.hsplit">[docs]</a>    <span class="k">def</span> <span class="nf">hsplit</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">:</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">,</span>
-        <span class="n">indices_or_sections</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">]],</span>
+        <span class="n">indices_or_sections</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="o">...</span><span class="p">]],</span>
         <span class="o">/</span><span class="p">,</span>
-        <span class="o">*</span><span class="p">,</span>
-        <span class="n">out</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">:</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;ivy.Container instance method variant of ivy.hsplit. This method simply</span>
 <span class="sd">        wraps the function, and so the docstring for ivy.hsplit also applies to this</span>
 <span class="sd">        method with minimal changes.</span>
@@ -2283,57 +2283,44 @@
 <span class="sd">        self</span>
 <span class="sd">            the container with array inputs.</span>
 <span class="sd">        indices_or_sections</span>
-<span class="sd">            If indices_or_sections is an integer n, the array is split into n sections.</span>
-<span class="sd">            If the array is divisible by n horizontally, each section will be of equal</span>
-<span class="sd">            size. If input is not divisible by n, the sizes of the first</span>
-<span class="sd">            int(ary.size(0) % n) sections will have size int(ary.size(0) / n) + 1, and</span>
-<span class="sd">            the rest will have size int(ary.size(0) / n).</span>
+<span class="sd">            If indices_or_sections is an integer n, the array is split into n</span>
+<span class="sd">            equal sections, provided that n must be a divisor of the split axis.</span>
 <span class="sd">            If indices_or_sections is a tuple of ints, then input is split at each of</span>
 <span class="sd">            the indices in the tuple.</span>
-<span class="sd">        out</span>
-<span class="sd">            optional output container, for writing the result to.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">        ret</span>
-<span class="sd">            container including arrays with the modified Bessel</span>
-<span class="sd">            function evaluated at each of the elements of x.</span>
+<span class="sd">            list of containers split horizontally from input container</span>
 
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
 <span class="sd">        &gt;&gt;&gt; ary = ivy.Container(</span>
-<span class="sd">            a = ivy.ivy.array(</span>
+<span class="sd">            a = ivy.array(</span>
 <span class="sd">                    [[[0.,  1.],</span>
 <span class="sd">                      [2.,  3.]],</span>
 <span class="sd">                      [[4.,  5.],</span>
 <span class="sd">                      [6.,  7.]]]</span>
 <span class="sd">                ),</span>
 <span class="sd">            b=ivy.array(</span>
-<span class="sd">                    [[ 0.,  1.,  2.,  3.],</span>
-<span class="sd">                     [ 4.,  5.,  6.,  7.],</span>
-<span class="sd">                     [ 8.,  9., 10., 11.],</span>
-<span class="sd">                     [12., 13., 14., 15.]])</span>
+<span class="sd">                    [0.,  1.,  2.,  3.,</span>
+<span class="sd">                     4.,  5.,  6.,  7.,</span>
+<span class="sd">                     8.,  9.,  10., 11.,</span>
+<span class="sd">                     12., 13., 14., 15.]</span>
 <span class="sd">                )</span>
 <span class="sd">            )</span>
 <span class="sd">        &gt;&gt;&gt; ary.hsplit(2)</span>
-<span class="sd">        {</span>
-<span class="sd">            a: ivy.ivy.array(</span>
-<span class="sd">                    [[[0.,  1.],</span>
-<span class="sd">                      [2.,  3.]],</span>
-<span class="sd">                      [[4.,  5.],</span>
-<span class="sd">                      [6.,  7.]]]</span>
-<span class="sd">                ),</span>
-<span class="sd">            b: [ivy.array([[ 0.,  1.],</span>
-<span class="sd">                        [ 4.,  5.],</span>
-<span class="sd">                        [ 8.,  9.],</span>
-<span class="sd">                        [12., 13.]]),</span>
-<span class="sd">                ivy.array([[ 2.,  3.],</span>
-<span class="sd">                        [ 6.,  7.],</span>
-<span class="sd">                        [10., 11.],</span>
-<span class="sd">                        [14., 15.]])</span>
-<span class="sd">        }</span>
+<span class="sd">        [{</span>
+<span class="sd">            a: ivy.array([[[0., 1.]],</span>
+<span class="sd">                          [[4., 5.]]]),</span>
+<span class="sd">            b: ivy.array([0., 1., 2., 3., 4., 5., 6., 7.])</span>
+<span class="sd">        }, {</span>
+<span class="sd">            a: ivy.array([[[2., 3.]],</span>
+<span class="sd">                          [[6., 7.]]]),</span>
+<span class="sd">            b: ivy.array([8., 9., 10., 11., 12., 13., 14., 15.])</span>
+<span class="sd">        }]</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">static_hsplit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">indices_or_sections</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">out</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">static_hsplit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">indices_or_sections</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="ContainerWithManipulationExperimental.static_broadcast_shapes"><a class="viewcode-back" href="../../../../data_classes/container/experimental.html#ivy.container.experimental.ContainerWithManipulationExperimental.static_broadcast_shapes">[docs]</a>    <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">static_broadcast_shapes</span><span class="p">(</span>
@@ -2424,7 +2411,65 @@
 <span class="sd">        }</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">static_broadcast_shapes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">out</span><span class="p">)</span></div></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">static_broadcast_shapes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">out</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="ContainerWithManipulationExperimental.static_expand"><a class="viewcode-back" href="../../../../data_classes/container/experimental.html#ivy.container.experimental.ContainerWithManipulationExperimental.static_expand">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">static_expand</span><span class="p">(</span>
+        <span class="n">x</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">],</span>
+        <span class="n">shape</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Shape</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeShape</span><span class="p">],</span>
+        <span class="o">/</span><span class="p">,</span>
+        <span class="o">*</span><span class="p">,</span>
+        <span class="n">device</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Device</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeDevice</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">key_chains</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">to_apply</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="n">prune_unapplied</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">map_sequences</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">out</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        x</span>
+<span class="sd">        shape</span>
+<span class="sd">        device</span>
+<span class="sd">        out</span>
+<span class="sd">        key_chains</span>
+<span class="sd">        to_apply</span>
+<span class="sd">        prune_unapplied</span>
+<span class="sd">        map_sequences</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">ContainerBase</span><span class="o">.</span><span class="n">cont_multi_map_in_function</span><span class="p">(</span>
+            <span class="s2">&quot;expand&quot;</span><span class="p">,</span>
+            <span class="n">x</span><span class="p">,</span>
+            <span class="n">shape</span><span class="p">,</span>
+            <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">,</span>
+            <span class="n">key_chains</span><span class="o">=</span><span class="n">key_chains</span><span class="p">,</span>
+            <span class="n">to_apply</span><span class="o">=</span><span class="n">to_apply</span><span class="p">,</span>
+            <span class="n">prune_unapplied</span><span class="o">=</span><span class="n">prune_unapplied</span><span class="p">,</span>
+            <span class="n">map_sequences</span><span class="o">=</span><span class="n">map_sequences</span><span class="p">,</span>
+            <span class="n">out</span><span class="o">=</span><span class="n">out</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="ContainerWithManipulationExperimental.expand"><a class="viewcode-back" href="../../../../data_classes/container/experimental.html#ivy.container.experimental.ContainerWithManipulationExperimental.expand">[docs]</a>    <span class="k">def</span> <span class="nf">expand</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">],</span>
+        <span class="n">shape</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Shape</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeShape</span><span class="p">],</span>
+        <span class="o">/</span><span class="p">,</span>
+        <span class="o">*</span><span class="p">,</span>
+        <span class="n">device</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Device</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeDevice</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">out</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        shape</span>
+<span class="sd">        device</span>
+<span class="sd">        out</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">static_expand</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">shape</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">out</span><span class="p">)</span></div></div>
 </pre></div>
 
            </div>

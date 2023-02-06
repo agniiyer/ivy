@@ -55,6 +55,7 @@
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="../../experimental.html">Experimental</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../l2_normalize.html">l2_normalize</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../instance_norm.html">instance_norm</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../diagflat.html">diagflat</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../kron.html">kron</a><ul class="current">
 <li class="toctree-l3 current"><a class="current reference internal" href="#">ivy.kron</a></li>
@@ -89,11 +90,16 @@
 <li class="toctree-l2"><a class="reference internal" href="../take_along_axis.html">take_along_axis</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../hsplit.html">hsplit</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../broadcast_shapes.html">broadcast_shapes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../expand.html">expand</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../bind_custom_gradient_function.html">bind_custom_gradient_function</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../dirichlet.html">dirichlet</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../beta.html">beta</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../gamma.html">gamma</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../poisson.html">poisson</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../bernoulli.html">bernoulli</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../logit.html">logit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../prelu.html">prelu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../thresholded_relu.html">thresholded_relu</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../msort.html">msort</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../triu_indices.html">triu_indices</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../vorbis_window.html">vorbis_window</a></li>
@@ -102,6 +108,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../kaiser_bessel_derived_window.html">kaiser_bessel_derived_window</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../hamming_window.html">hamming_window</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../tril_indices.html">tril_indices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../eye_like.html">eye_like</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../max_pool1d.html">max_pool1d</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../max_pool2d.html">max_pool2d</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../max_pool3d.html">max_pool3d</a></li>
@@ -113,6 +120,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../dropout1d.html">dropout1d</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../ifft.html">ifft</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../embedding.html">embedding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dft.html">dft</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../is_ivy_sparse_array.html">is_ivy_sparse_array</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../is_native_sparse_array.html">is_native_sparse_array</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../native_sparse_array.html">native_sparse_array</a></li>
@@ -165,6 +173,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../elementwise.html">Elementwise</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../../experimental.html">Experimental</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../l2_normalize.html">l2_normalize</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../instance_norm.html">instance_norm</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../diagflat.html">diagflat</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../kron.html">kron</a><ul class="current">
 <li class="toctree-l3 current"><a class="current reference internal" href="#">ivy.kron</a></li>
@@ -199,11 +208,16 @@
 <li class="toctree-l2"><a class="reference internal" href="../take_along_axis.html">take_along_axis</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../hsplit.html">hsplit</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../broadcast_shapes.html">broadcast_shapes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../expand.html">expand</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../bind_custom_gradient_function.html">bind_custom_gradient_function</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../dirichlet.html">dirichlet</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../beta.html">beta</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../gamma.html">gamma</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../poisson.html">poisson</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../bernoulli.html">bernoulli</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../logit.html">logit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../prelu.html">prelu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../thresholded_relu.html">thresholded_relu</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../msort.html">msort</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../triu_indices.html">triu_indices</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../vorbis_window.html">vorbis_window</a></li>
@@ -212,6 +226,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../kaiser_bessel_derived_window.html">kaiser_bessel_derived_window</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../hamming_window.html">hamming_window</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../tril_indices.html">tril_indices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../eye_like.html">eye_like</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../max_pool1d.html">max_pool1d</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../max_pool2d.html">max_pool2d</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../max_pool3d.html">max_pool3d</a></li>
@@ -223,6 +238,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../dropout1d.html">dropout1d</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../ifft.html">ifft</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../embedding.html">embedding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dft.html">dft</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../is_ivy_sparse_array.html">is_ivy_sparse_array</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../is_native_sparse_array.html">is_native_sparse_array</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../native_sparse_array.html">native_sparse_array</a></li>
@@ -302,6 +318,17 @@
 <p class="caption" role="heading"><span class="caption-text">Nested array</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../../nested_array/nested_array.html">Nested array</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Testing</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../testing/assertions.html">Assertions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../testing/available_frameworks.html">Available frameworks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../testing/function_testing.html">Function testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../testing/globals.html">Globals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../testing/hypothesis_helpers.html">Hypothesis helpers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../testing/structs.html">Structs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../testing/test_parameter_flags.html">Test parameter flags</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../testing/testing_helpers.html">Testing helpers</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Docs</span></p>
 <ul>
