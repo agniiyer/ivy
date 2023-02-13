@@ -15,6 +15,7 @@ Experimental
 
    experimental/l2_normalize.rst
    experimental/instance_norm.rst
+   experimental/lp_normalize.rst
    experimental/diagflat.rst
    experimental/kron.rst
    experimental/matrix_exp.rst
@@ -54,6 +55,7 @@ Experimental
    experimental/prelu.rst
    experimental/thresholded_relu.rst
    experimental/msort.rst
+   experimental/lexsort.rst
    experimental/triu_indices.rst
    experimental/vorbis_window.rst
    experimental/hann_window.rst
@@ -74,6 +76,9 @@ Experimental
    experimental/ifft.rst
    experimental/embedding.rst
    experimental/dft.rst
+   experimental/interp.rst
+   experimental/interpolate.rst
+   experimental/padding_ceil_mode.rst
    experimental/is_ivy_sparse_array.rst
    experimental/is_native_sparse_array.rst
    experimental/native_sparse_array.rst
@@ -83,6 +88,7 @@ Experimental
    experimental/unravel_index.rst
    experimental/quantile.rst
    experimental/corrcoef.rst
+   experimental/nanmedian.rst
    experimental/binary_cross_entropy_with_logits.rst
    experimental/sinc.rst
    experimental/lcm.rst
