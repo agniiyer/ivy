@@ -42,4 +42,6 @@ Elementwise
    elementwise/real.rst
    elementwise/binarizer.rst
    elementwise/conj.rst
+   elementwise/ldexp.rst
+   elementwise/frexp.rst
 
